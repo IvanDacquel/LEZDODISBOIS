@@ -1,6 +1,6 @@
 # 1-2-3-PASS Card Game
 
-# Members
+### Members
 
 Figueroa, Francis James <br />
 Dacquel, Ivan Amadeus <br />
@@ -8,13 +8,13 @@ Dollentes, Michael Anthony <br />
 Salcedo, Jan Raymond <br />
 Villaro, Paul
 
-# Specifications
+### Specifications
 
 Programming language: Java <br />
 Import Socket, ServerSocket in Java <br />
 Github: https://github.com/IvanDacquel/LEZDODISBOIS
 
-# Basic Game Layout
+### Basic Game Layout
 
 1. Server will create a game instance that will require n players (min. 3 players, max 13)
 

@@ -1,6 +1,6 @@
 # 1-2-3-PASS Card Game
 
-### Members
+## Members
 
 Figueroa, Francis James <br />
 Dacquel, Ivan Amadeus <br />
@@ -8,12 +8,14 @@ Dollentes, Michael Anthony <br />
 Salcedo, Jan Raymond <br />
 Villaro, Paul
 
-### Specifications
+## Specifications
 
 Programming language: **Java** <br />
 Protocol: **UDP** <br />
 Import Socket, ServerSocket in Java <br />
 Github: https://github.com/IvanDacquel/LEZDODISBOIS
+
+## Game Layout and Protocol
 
 ### I. Basic Game Layout
 
@@ -38,5 +40,28 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 10. The server will send a list of clients, ranked by who pressed “Enter” quicker
 
 ### II. Communication Protocol
-A. 
+
+1. Data Flow Diagram
+  i.
+2. Structure of the Data
+  i.
+
+## Designations
+  
+Signals:
+  01 = Request Cards
+  02 = Send Card/s
+  
+Player ID: 01,02,03,.....,12,13
+
+Cards:
+  Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond)
+  Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King)
+  Sample Card Code: AC (Ace of Clubs)
+
+Code Pattern:
+  Sample code: 0204KC
+    02 - Server Requests Cards
+    04 - Player ID
+    KC - Card chosen is King of Clubs
 

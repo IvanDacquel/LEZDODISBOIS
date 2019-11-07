@@ -2,11 +2,11 @@
 
 ## Members
 
-Figueroa, Francis James <br />
-Dacquel, Ivan Amadeus <br />
-Dollentes, Michael Anthony <br />
-Salcedo, Jan Raymond <br />
-Villaro, Paul
+>Figueroa, Francis James <br />
+>Dacquel, Ivan Amadeus <br />
+>Dollentes, Michael Anthony <br />
+>Salcedo, Jan Raymond <br />
+>Villaro, Paul
 
 ## Specifications
 
@@ -49,8 +49,8 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 ## Designations
   
 Signals: <br />
-  01 = Request Cards <br />
-  02 = Send Card/s <br />
+  +01 = Request Cards <br />
+  +02 = Send Card/s <br />
   
 Player ID: 01,02,03,.....,12,13 <br />
 

@@ -48,20 +48,20 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 
 ## Designations
   
-Signals:
-  01 = Request Cards
-  02 = Send Card/s
+Signals: <br />
+  01 = Request Cards <br />
+  02 = Send Card/s <br />
   
-Player ID: 01,02,03,.....,12,13
+Player ID: 01,02,03,.....,12,13 <br />
 
-Cards:
-  Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond)
-  Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King)
-  Sample Card Code: AC (Ace of Clubs)
+Cards: <br />
+  Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond) <br />
+  Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King) <br />
+  Sample Card Code: AC (Ace of Clubs) <br />
 
-Code Pattern:
-  Sample code: 0204KC
-    02 - Server Requests Cards
-    04 - Player ID
-    KC - Card chosen is King of Clubs
+Code Pattern: <br />
+  Sample code: 0204KC <br />
+    02 - Server Requests Cards <br />
+    04 - Player ID <br />
+    KC - Card chosen is King of Clubs <br />
 

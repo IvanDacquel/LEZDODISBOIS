@@ -2,11 +2,11 @@
 
 ## Members
 
->Figueroa, Francis James <br />
->Dacquel, Ivan Amadeus <br />
->Dollentes, Michael Anthony <br />
->Salcedo, Jan Raymond <br />
->Villaro, Paul
++Figueroa, Francis James <br />
++Dacquel, Ivan Amadeus <br />
++Dollentes, Michael Anthony <br />
++Salcedo, Jan Raymond <br />
++Villaro, Paul
 
 ## Specifications
 

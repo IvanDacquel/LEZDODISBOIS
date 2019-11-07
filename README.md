@@ -44,6 +44,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 1. Data Flow Diagram <br />
 ![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram.png "Data Flow Diagram")<br />
 2. Structure of the Data <br />
+<PENDING>
 
 ## Designations
   
@@ -54,13 +55,13 @@ Signals: <br />
 Player ID: 01,02,03,.....,12,13 <br />
 
 Cards: <br />
-  >Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond) <br />
-  >Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King) <br />
-  #Sample Card Code: AC (Ace of Clubs) <br />
+  Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond) <br />
+  Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King) <br />
+  Sample Card Code: AC (Ace of Clubs) <br />
 
 Code Pattern: <br />
-  #Sample code: 0204KC <br />
-    >02 - Server Requests Cards <br />
-    >04 - Player ID <br />
-    >KC - Card chosen is King of Clubs <br />
+  Sample code: 0204KC <br />
+    02 - Server Requests Cards <br />
+    04 - Player ID <br />
+    KC - Card chosen is King of Clubs <br />
 

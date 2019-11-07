@@ -10,11 +10,12 @@ Villaro, Paul
 
 ### Specifications
 
-Programming language: Java <br />
+Programming language: **Java** <br />
+Protocol: **UDP** <br />
 Import Socket, ServerSocket in Java <br />
 Github: https://github.com/IvanDacquel/LEZDODISBOIS
 
-### Basic Game Layout
+### I. Basic Game Layout
 
 1. Server will create a game instance that will require n players (min. 3 players, max 13)
 
@@ -35,3 +36,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 9. Once a client presses “Enter”, the server will broadcast to the rest of the clients that they should press “Enter” quickly
 
 10. The server will send a list of clients, ranked by who pressed “Enter” quicker
+
+### II. Communication Protocol
+A. 
+

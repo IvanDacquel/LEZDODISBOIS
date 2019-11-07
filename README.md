@@ -2,16 +2,16 @@
 
 # Members
 
-Figueroa, Francis James
-Dacquel, Ivan Amadeus
-Dollentes, Michael Anthony
-Salcedo, Jan Raymond
+Figueroa, Francis James <br />
+Dacquel, Ivan Amadeus <br />
+Dollentes, Michael Anthony <br />
+Salcedo, Jan Raymond <br />
 Villaro, Paul
 
 # Specifications
 
-Programming language: Java
-Import Socket, ServerSocket in Java
+Programming language: Java <br />
+Import Socket, ServerSocket in Java <br />
 Github: https://github.com/IvanDacquel/LEZDODISBOIS
 
 # Basic Game Layout

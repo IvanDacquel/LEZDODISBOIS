@@ -46,6 +46,13 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 2. Structure of the Data <br />
 --PENDING--
 
+### III. Wireframe
+
+Sample of Player's UI<br />
+\*Optional<br />
+\*\*Should be included<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram2.png "Data Flow Diagram")<br />
+
 ## Designations
   
 Signals: <br />

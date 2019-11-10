@@ -51,7 +51,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram2.png "Data Flow Diagram")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Data Flow Diagram")<br />
 
 ## Designations
   

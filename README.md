@@ -42,9 +42,9 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 ### II. Communication Protocol
 
 1. Data Flow Diagram <br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram.png "Data Flow Diagram")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram2.png "Data Flow Diagram")<br />
 2. Structure of the Data <br />
---PENDING---
+--PENDING--
 
 ## Designations
   

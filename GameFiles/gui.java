@@ -20,14 +20,14 @@ public class gui{
             list.add("AD");
             list.add("AH");
             list.add("AS");
-            list.add("2C");
-            list.add("2D");
-            list.add("2H");
-            list.add("2C");
-            list.add("3C");
-            list.add("3D");
-            list.add("3H");
-            list.add("3S");
+            // list.add("2C");
+            // list.add("2D");
+            // list.add("2H");
+            // list.add("2C");
+            // list.add("3C");
+            // list.add("3D");
+            // list.add("3H");
+            // list.add("3S");
             // Shuffles cards
             Collections.shuffle(list);
             // Create frame with title
@@ -50,14 +50,16 @@ public class gui{
             // Shuffle button
             JButton shuffle = new JButton("SHUFFLE");
             // Button design
+            shuffle.setBackground(Color.white);
             shuffle.setPreferredSize(new Dimension(150, 40));
+            shuffle.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Enter button
             JButton enter = new JButton("ENTER");
             // Button design
-            enter.setBackground(new Color(184, 0, 20));
-            enter.setForeground(Color.white);
-            enter.setBorder(new LineBorder(new Color(53, 101, 77),1));
             enter.setEnabled(false);
+            enter.setForeground(Color.white);
+            enter.setBackground(new Color(184, 0, 20));
+            enter.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Button design
             button1.setBackground(new Color(53, 101, 77));
             button2.setBackground(new Color(53, 101, 77));
@@ -123,15 +125,29 @@ public class gui{
                   frame.repaint();
                 }
             });
+            // Press enter for win
+            enter.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                  // This print will be the enter signal from client to server
+                  System.out.println(args[0] + " has pressed Enter!!!");
+                  enter.setEnabled(false);
+                }
+            });
             // Panel for optional buttons and connection info
             JPanel panel2 = new JPanel();
             panel2.setBackground(new Color(53, 101, 77));
             // Reset button; to revert unlickable buttons
             JButton reset = new JButton("RESET TEST");//supposed place of PAUSE
+            reset.setBackground(Color.white);
+            reset.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Currently a test button for win scenario
             JButton help = new JButton("WIN TEST");//supposed place of HELP
+            help.setBackground(Color.white);
+            help.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Working exit button
             JButton exit = new JButton("EXIT");
+            exit.setBackground(Color.white);
+            exit.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Text for Player ID and designs
             JTextField pId = new JTextField();
             pId.setText("Player ID: XX");

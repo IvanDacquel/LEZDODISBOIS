@@ -33,8 +33,12 @@ public class gui{
             // Create frame with title
             JFrame frame = new JFrame("1-2-3-PASS!");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            // Frame size
+            // Removes title bar; so the close (x) button is not seen
+            Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
             frame.setSize(600,400);
+            frame.setUndecorated(true);
+            frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+            // Frame size
             // Panel for cards, Shuffle, and Enter buttons
             JPanel panel = new JPanel();
             // Panel for cards buttons only

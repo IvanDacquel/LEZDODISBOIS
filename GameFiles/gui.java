@@ -20,22 +20,26 @@ public class gui{
             list.add("AD");
             list.add("AH");
             list.add("AS");
-            // list.add("2C");
-            // list.add("2D");
-            // list.add("2H");
-            // list.add("2C");
-            // list.add("3C");
-            // list.add("3D");
-            // list.add("3H");
-            // list.add("3S");
+            list.add("2C");
+            list.add("2D");
+            list.add("2H");
+            list.add("2C");
+            list.add("3C");
+            list.add("3D");
+            list.add("3H");
+            list.add("3S");
             // Shuffles cards
             Collections.shuffle(list);
+            // Variables for code passing
+            int turnNo = 1;
+            int playerID = 1;
             // Create frame with title
             JFrame frame = new JFrame("1-2-3-PASS!");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             // Removes title bar; so the close (x) button is not seen
             Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
             frame.setSize(600,400);
+            frame.setResizable(false);
             frame.setUndecorated(true);
             frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
             // Frame size
@@ -51,7 +55,7 @@ public class gui{
             JButton button2 = new JButton(new ImageIcon(((new ImageIcon("PNG-cards-1.3/"+list.get(1)+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
             JButton button3 = new JButton(new ImageIcon(((new ImageIcon("PNG-cards-1.3/"+list.get(2)+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
             JButton button4 = new JButton(new ImageIcon(((new ImageIcon("PNG-cards-1.3/"+list.get(3)+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-            // Shuffle button
+            // Shuffle button; PENDING JUDGEMENT: Might be removed; Replaced with timer?
             JButton shuffle = new JButton("SHUFFLE");
             // Button design
             shuffle.setBackground(Color.white);
@@ -76,7 +80,16 @@ public class gui{
             // ActionListeners; prints chosen card and disables the rest
             button1.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                  System.out.println(list.get(0));
+                  String code = "";
+                  if(turnNo < 10){
+                        code = "0";
+                  }
+                  code = code+turnNo;
+                  if(playerID < 10){
+                        code = code+"0";
+                  }
+                  code = code+playerID+list.get(0);
+                  System.out.println(code);
                   button1.setEnabled(false);
                   button2.setEnabled(false);
                   button3.setEnabled(false);
@@ -86,7 +99,16 @@ public class gui{
             });
             button2.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                  System.out.println(list.get(1));
+                  String code = "";
+                  if(turnNo < 10){
+                        code = "0";
+                  }
+                  code = code+turnNo;
+                  if(playerID < 10){
+                        code = code+"0";
+                  }
+                  code = code+playerID+list.get(1);
+                  System.out.println(code);
                   button1.setEnabled(false);
                   button2.setEnabled(false);
                   button3.setEnabled(false);
@@ -96,7 +118,16 @@ public class gui{
             });
             button3.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                  System.out.println(list.get(2));
+                  String code = "";
+                  if(turnNo < 10){
+                        code = "0";
+                  }
+                  code = code+turnNo;
+                  if(playerID < 10){
+                        code = code+"0";
+                  }
+                  code = code+playerID+list.get(2);
+                  System.out.println(code);
                   button1.setEnabled(false);
                   button2.setEnabled(false);
                   button3.setEnabled(false);
@@ -106,7 +137,16 @@ public class gui{
             });
             button4.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                  System.out.println(list.get(3));
+                  String code = "";
+                  if(turnNo < 10){
+                        code = "0";
+                  }
+                  code = code+turnNo;
+                  if(playerID < 10){
+                        code = code+"0";
+                  }
+                  code = code+playerID+list.get(3);
+                  System.out.println(code);
                   button1.setEnabled(false);
                   button2.setEnabled(false);
                   button3.setEnabled(false);
@@ -134,6 +174,7 @@ public class gui{
                 public void actionPerformed(ActionEvent e) {
                   // This print will be the enter signal from client to server
                   System.out.println(args[0] + " has pressed Enter!!!");
+                  enter.setBackground(new Color(200, 168, 1));
                   enter.setEnabled(false);
                 }
             });

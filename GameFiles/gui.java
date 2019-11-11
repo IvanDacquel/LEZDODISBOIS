@@ -31,6 +31,7 @@ public class gui{
             // Shuffles cards
             Collections.shuffle(list);
             // Variables for code passing
+            // Given by server
             int turnNo = 1;
             int playerID = 1;
             // Create frame with title
@@ -195,7 +196,12 @@ public class gui{
             exit.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Text for Player ID and designs
             JTextField pId = new JTextField();
-            pId.setText("Player ID: XX");
+            if(playerID < 10){
+                  pId.setText("Player ID: 0"+playerID);
+            }
+            else{
+                  pId.setText("Player ID: "+playerID);
+            }
             pId.setEditable(false);
             pId.setForeground(Color.white);
             pId.setBackground(new Color(53, 101, 77));
@@ -204,7 +210,7 @@ public class gui{
             pId.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Text for Player count and designs
             JTextField players = new JTextField();
-            players.setText("Total Player: XX");
+            players.setText("Total Players: XX");
             players.setEditable(false);
             players.setForeground(Color.white);
             players.setBackground(new Color(53, 101, 77));
@@ -247,6 +253,8 @@ public class gui{
             });
             exit.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                  // Game stops cuz someone left; Print placeholder atm
+                  System.out.println("WARNING: "+args[0]+" has left the game!");
                   frame.dispose();
                 }
             });
@@ -264,7 +272,12 @@ public class gui{
             name.setBorder(new LineBorder(new Color(53, 101, 77),1));
             // Text for Turn number and designs
             JTextField turn = new JTextField();
-            turn.setText("Turn: XX");
+            if(playerID < 10){
+                  turn.setText("Turn: 0"+turnNo);
+            }
+            else{
+                  turn.setText("Turn: "+turnNo);
+            }
             turn.setEditable(false);
             turn.setForeground(Color.white);
             turn.setBackground(new Color(53, 101, 77));

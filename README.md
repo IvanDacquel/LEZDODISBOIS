@@ -47,29 +47,29 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 --PENDING--
 
 ### III. Wireframe
-Sample of Login UI (Optional)<br />
+#### Sample of Login UI (Optional)<br />
 +When the code is executed, a GUI will pop-up, asking for the user's Name, Sever ID, and Port<br />
 +After filling up needed information, the UI will change into the game area<br />
 ![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/login.png "Client log-in")<br />
-Sample of Player's UI<br />
+#### Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />
 ![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Game interface")<br />
 
 ## Designations
   
-Signals: <br />
+#### Signals: <br />
   +01 = Request Cards <br />
   +02 = Send Card/s <br />
   
 Player ID: 01,02,03,.....,12,13 <br />
 
-Cards: <br />
+#### Cards: <br />
   +Suites: C (Clubs), S (Spades), H (Hearts), D (Diamond) <br />
   +Values: A (Ace), 2, 3, 4, 5, 6, 7, 8, 9, T (Ten), J (Jack), Q (Queen), K (King) <br />
   +Sample Card Code: AC (Ace of Clubs) <br />
 
-Code Pattern: <br />
+#### Code Pattern: <br />
   +Sample code: 0204KC <br />
     ++02 - Server Requests Cards <br />
     ++04 - Player ID <br />

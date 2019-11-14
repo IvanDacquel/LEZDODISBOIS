@@ -50,7 +50,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 Sample of Login UI (Optional)<br />
 +When the code is executed, a GUI will pop-up, asking for the user's Name, Sever ID, and Port
 +After filling up needed information, the UI will change into the game area
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Client log-in")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/login.png "Client log-in")<br />
 Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />

@@ -30,9 +30,15 @@ public class Server{
 
       packet = new DatagramPacket(buf, buf.length);
       this.socket.receive(packet);
+      this.received = new String();
 
-      this.received = new String(packet.getData(), 0, packet.getLength());
-      System.out.println("Received: " + this.received);
+      while(!this.received.equals("bye")){
+        this.received = new String(packet.getData(), 0, packet.getLength());
+        System.out.println("Received: " + this.received);
+
+        packet = new DatagramPacket(buf, buf.length);
+        this.socket.receive(packet);
+      }
 
       this.socket.close();
     }catch(IOException e){

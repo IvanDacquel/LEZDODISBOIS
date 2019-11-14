@@ -71,7 +71,7 @@ Player ID: 01,02,03,.....,12,13 <br />
 
 #### Code Pattern: <br />
 ##### Sample code: 0204KC <br />
-    ++02 - Server Requests Cards <br />
-    ++04 - Player ID <br />
-    ++KC - Card chosen is King of Clubs <br />
++02 - Server Requests Cards <br />
++04 - Player ID <br />
++KC - Card chosen is King of Clubs <br />
 

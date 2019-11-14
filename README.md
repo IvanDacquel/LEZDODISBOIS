@@ -47,11 +47,14 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 --PENDING--
 
 ### III. Wireframe
-
+Sample of Login UI (Optional)<br />
++When the code is executed, a GUI will pop-up, asking for the user's Name, Sever ID, and Port
++After filling up needed information, the UI will change into the game area
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Client log-in")<br />
 Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Data Flow Diagram")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Game interface")<br />
 
 ## Designations
   

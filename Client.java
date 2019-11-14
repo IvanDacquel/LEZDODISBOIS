@@ -2,6 +2,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.io.*;
+import java.util.Scanner;
 
 public class Client{
   private DatagramSocket socket;
@@ -19,11 +20,14 @@ public class Client{
       byte[] buf = new byte[256];
       DatagramPacket packet = new DatagramPacket(buf, buf.length, this.host, 3000);
       this.socket.send(packet);
+      this.signal = new String();
 
-      this.signal = new String("01012C");
-      buf = this.signal.getBytes();
-      packet = new DatagramPacket(buf, buf.length, this.host, 3000);
-      this.socket.send(packet);
+      while(!this.signal.equals("bye")){
+        this.signal = new Scanner(System.in).nextLine();
+        buf = this.signal.getBytes();
+        packet = new DatagramPacket(buf, buf.length, this.host, 3000);
+        this.socket.send(packet);
+      }
 
       this.socket.close();
     }catch(IOException e){

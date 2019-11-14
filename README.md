@@ -70,7 +70,7 @@ Player ID: 01,02,03,.....,12,13 <br />
   +Sample Card Code: AC (Ace of Clubs) <br />
 
 #### Code Pattern: <br />
-  +Sample code: 0204KC <br />
+##### Sample code: 0204KC <br />
     ++02 - Server Requests Cards <br />
     ++04 - Player ID <br />
     ++KC - Card chosen is King of Clubs <br />

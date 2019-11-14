@@ -68,7 +68,7 @@ Cards: <br />
 
 Code Pattern: <br />
   +Sample code: 0204KC <br />
-    ++02 - Server Requests Cards <br />
+    <t/>02 - Server Requests Cards <br />
     ++04 - Player ID <br />
     ++KC - Card chosen is King of Clubs <br />
 

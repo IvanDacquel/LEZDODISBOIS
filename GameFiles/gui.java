@@ -19,15 +19,18 @@ public class gui{
 	private JPanel panel2;
 	private JPanel panel3;
 
+	private JButton enter;
+	private JButton exit;
+	private JButton shuffle;
 	private JButton button1;
 	private JButton button2;
 	private JButton button3;
 	private JButton button4;
 	
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+//	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-//	private final String IMG_FOLDER = "PNG-cards-1.3/";
+	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	
 	public gui(ViewListener listener) {
 		this.listener = listener;
@@ -132,14 +135,18 @@ public class gui{
         button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         button4 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button1.setEnabled(false);
+        button2.setEnabled(false);
+        button3.setEnabled(false);
+        button4.setEnabled(false);
         // Shuffle button; PENDING JUDGEMENT: Might be removed; Replaced with timer?
-        JButton shuffle = new JButton("SHUFFLE");
+        shuffle = new JButton("SHUFFLE");
         // Button design
         shuffle.setBackground(Color.white);
         shuffle.setPreferredSize(new Dimension(150, 40));
         shuffle.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Enter button
-        JButton enter = new JButton("ENTER");
+        enter = new JButton("ENTER");
         // Button design
         enter.setEnabled(false);
         enter.setForeground(Color.white);
@@ -169,7 +176,7 @@ public class gui{
         help.setBackground(Color.white);
         help.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Working exit button
-        JButton exit = new JButton("EXIT");
+        exit = new JButton("EXIT");
         exit.setBackground(Color.white);
         exit.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Text for Player ID and designs
@@ -299,14 +306,6 @@ public class gui{
         });
         help.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              button1.setEnabled(false);
-              button2.setEnabled(false);
-              button3.setEnabled(false);
-              button4.setEnabled(false);
-              enter.setBackground(new Color(0, 171, 102));
-              enter.setEnabled(true);
-              exit.setEnabled(false);
-              shuffle.setEnabled(false);
             }
         });
         exit.addActionListener(new ActionListener() {
@@ -317,6 +316,17 @@ public class gui{
             }
         });
 	}
+
+    public void pressEnter() {
+      button1.setEnabled(false);
+      button2.setEnabled(false);
+      button3.setEnabled(false);
+      button4.setEnabled(false);
+      enter.setBackground(new Color(0, 171, 102));
+      enter.setEnabled(true);
+      exit.setEnabled(false);
+      shuffle.setEnabled(false);
+    }
 
 	public void setInitialValues(String playerName, String portNumber) {
         // Text for Player name and designs
@@ -372,6 +382,10 @@ public class gui{
       button2.setIcon(newImg2);
       button3.setIcon(newImg3);
       button4.setIcon(newImg4);
+      button1.setEnabled(true);
+      button2.setEnabled(true);
+      button3.setEnabled(true);
+      button4.setEnabled(true);
       frame.repaint();
 	}
 

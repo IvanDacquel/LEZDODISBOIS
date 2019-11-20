@@ -12,6 +12,7 @@ public class ClientController implements ViewListener {
 	private InetAddress host;
 	private DatagramSocket socket;
 	private String signal;
+	private String received;
 	
 	private gui mainWindow;
 	private String playerName;
@@ -31,10 +32,14 @@ public class ClientController implements ViewListener {
 	
 	//--------TEMP FUNCTION FOR WHEN SERVER HAS FINISHED GIVING CARDS-----------
 	public void initCards(String card1, String card2, String card3, String card4) {
-		cards.add(card1);
-		cards.add(card2);
-		cards.add(card3);
-		cards.add(card4);
+		System.out.println(card1);
+		System.out.println(card2);
+		System.out.println(card3);
+		System.out.println(card4);
+		cards.set(0, card1);
+		cards.set(1, card2);
+		cards.set(2, card3);
+		cards.set(3, card4);
 		
 		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
 	}
@@ -49,6 +54,38 @@ public class ClientController implements ViewListener {
 	    
 		try {
 			socket.send(packet);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		receiveMessage();
+	}
+	
+	private void receiveMessage() {
+		received = new String();
+		
+		byte buf[] = new byte[256];
+		DatagramPacket packet = new DatagramPacket(buf, buf.length);
+		
+	    try {
+			socket.receive(packet);
+			received = new String(packet.getData(), 0, packet.getLength());
+			switch(received.substring(0, 2)) {
+				case "SC": 
+					initCards(received.substring(2, 4), received.substring(4, 6), received.substring(6, 8), received.substring(8, 10));
+					break;
+				case "UC":
+					cards.add(received.substring(2, 4));
+					mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
+					break;
+				case "WN":
+					mainWindow.pressEnter();
+					break;
+				default:
+					System.out.println("No match!");
+			}
+	        System.out.println("Received: " + received);
+	        
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,6 +120,9 @@ public class ClientController implements ViewListener {
 	@Override
 	public void pickCard(int index) {
 		String code = String.format("%02d", playerID) + "PA" + cards.get(index);
+		
+		cards.remove(index);
+		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), "BJ");
 
 		sendMessage(code);
 		System.out.println(code);

@@ -1,10 +1,20 @@
+import java.io.IOException;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class ClientController implements ViewListener {
+	private InetAddress host;
+	private DatagramSocket socket;
+	private String signal;
+	
 	private gui mainWindow;
 	private String playerName;
-	private String serverAddress;
 	private String portNumber;
 	private int playerID;
 	
@@ -29,16 +39,39 @@ public class ClientController implements ViewListener {
 		
 		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
 	}
+	
+	@SuppressWarnings("resource")
+	private void sendMessage(String message) {
+	    byte[] buf = new byte[256];
+	    
+	    signal = new Scanner(message).nextLine();
+        buf = signal.getBytes();
+	    DatagramPacket packet = new DatagramPacket(buf, buf.length, host, Integer.parseInt(portNumber));
+	    
+		try {
+			socket.send(packet);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void startGame(String playerName, String serverAddress, String portNumber) {
 		this.playerName = playerName;
-		this.serverAddress = serverAddress;
 		this.portNumber = portNumber;
 		
 		mainWindow.setInitialValues(playerName, portNumber);
-		
-		//TODO Request cards from server here
+
+		try {
+			host = InetAddress.getByName(serverAddress);
+			socket = new DatagramSocket();
+			
+			sendMessage(playerName);
+		} catch (UnknownHostException e) {
+			e.printStackTrace();
+		} catch (SocketException e) {
+			e.printStackTrace();
+		}
 		
 		mainWindow.startGame();
 	}
@@ -49,11 +82,11 @@ public class ClientController implements ViewListener {
 	}
 
 	@Override
-	public void sendMessage(int index) {
+	public void pickCard(int index) {
 		String code = String.format("%02d", playerID) + "PA" + cards.get(index);
-		
+
+		sendMessage(code);
 		System.out.println(code);
-		//send code to server?
 	}
 
 	@Override
@@ -61,5 +94,11 @@ public class ClientController implements ViewListener {
 		Collections.shuffle(cards);
 		System.out.println(cards);
 		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
+	}
+
+	@Override
+	public void exit() {
+		sendMessage(playerName + " has left the game!");
+		System.exit(0);
 	}
 }

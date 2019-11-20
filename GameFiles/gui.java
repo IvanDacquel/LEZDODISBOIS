@@ -6,7 +6,6 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.*;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
@@ -131,7 +130,6 @@ public class gui{
 
         //============SHOULD HAVE A DEFAULT BLANK/BACK FACE CARD IMAGE AND A MESSAGE WHILE WAITING FOR SERVER TO DISTRIBUTE CARDS====================
         // Creates the card buttons
-        System.out.println(IMG_FOLDER + "2C.png");
         button1 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2C.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2D.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2H.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
@@ -232,7 +230,7 @@ public class gui{
 
         button1.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-              listener.sendMessage(0);
+              listener.pickCard(0);
               
               button1.setEnabled(false);
               button2.setEnabled(false);
@@ -243,7 +241,7 @@ public class gui{
         });
         button2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	listener.sendMessage(1);
+            	listener.pickCard(1);
                 
               button1.setEnabled(false);
               button2.setEnabled(false);
@@ -254,7 +252,7 @@ public class gui{
         });
         button3.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                listener.sendMessage(2);
+                listener.pickCard(2);
                 
               button1.setEnabled(false);
               button2.setEnabled(false);
@@ -265,7 +263,7 @@ public class gui{
         });
         button4.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                listener.sendMessage(3);
+                listener.pickCard(3);
                 
               button1.setEnabled(false);
               button2.setEnabled(false);
@@ -319,7 +317,7 @@ public class gui{
             public void actionPerformed(ActionEvent e) {
               // Game stops cuz someone left; Print placeholder atm
               System.out.println("WARNING: "+ listener.getPlayerName() +" has left the game!");
-              System.exit(0);
+              listener.exit();
             }
         });
 	}
@@ -383,6 +381,8 @@ public class gui{
 
 	public void startGame() {
 		login.setVisible(false);
+		
+		
 		frame.setVisible(true);
 	}
 }

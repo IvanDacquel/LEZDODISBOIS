@@ -22,12 +22,11 @@ public class ClientController implements ViewListener {
 	
 	public ClientController() {
 		cards = new ArrayList<String>();
+		for(int i = 0; i < 4; i++) {
+			cards.add("BJ");	
+		}
 		
 		mainWindow = new gui(this);
-		
-		//============TEMP CALL, REMOVE LATER. DUMMY VALUES=============
-		initCards("2H", "4C", "5H", "KD");
-		//===============================================================
 	}
 	
 	//--------TEMP FUNCTION FOR WHEN SERVER HAS FINISHED GIVING CARDS-----------

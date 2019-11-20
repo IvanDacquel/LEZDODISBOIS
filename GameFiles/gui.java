@@ -25,9 +25,9 @@ public class gui{
 	private JButton button4;
 	
 	//===============================CHANGE LATER===================================
-//	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-	private final String IMG_FOLDER = "PNG-cards-1.3/";
+//	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	
 	public gui(ViewListener listener) {
 		this.listener = listener;
@@ -127,15 +127,11 @@ public class gui{
         // Panel for Shuffle and Enter buttons
         JPanel midBot = new JPanel();
         panel.setBackground(new Color(53, 101, 77));
-
-        //============SHOULD HAVE A DEFAULT BLANK/BACK FACE CARD IMAGE AND A MESSAGE WHILE WAITING FOR SERVER TO DISTRIBUTE CARDS====================
         // Creates the card buttons
-        button1 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2C.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2D.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2H.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button4 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "2S.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        //==========================================================================
-        
+        button1 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button4 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         // Shuffle button; PENDING JUDGEMENT: Might be removed; Replaced with timer?
         JButton shuffle = new JButton("SHUFFLE");
         // Button design
@@ -381,8 +377,8 @@ public class gui{
 
 	public void startGame() {
 		login.setVisible(false);
-		
-		
 		frame.setVisible(true);
+		
+		//====================gui.run()?
 	}
 }

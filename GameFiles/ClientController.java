@@ -106,7 +106,7 @@ public class ClientController implements ViewListener, HandlerListener {
 
 	@Override
 	public void exit() {
-		sendMessage("EX" + playerID);
+		sendMessage("EX" + String.format("%02d", playerID));
 		System.exit(0);
 	}
 

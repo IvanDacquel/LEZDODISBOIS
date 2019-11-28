@@ -26,6 +26,11 @@ public class GUI implements Runnable {
 	private JButton button2;
 	private JButton button3;
 	private JButton button4;
+
+	private JTextField name;
+	private JTextField turn;
+	private JTextField score;
+	private JTextField portId;
 	
 	//===============================CHANGE LATER===================================
 	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
@@ -219,12 +224,49 @@ public class GUI implements Runnable {
         panel.add(BorderLayout.PAGE_END,midBot);
         // Layout for bottom buttons and info
         GridLayout bottomLayout = new GridLayout(2,3,10,0);
+        // Text for Player name and designs
+        name = new JTextField();
+        name.setEditable(false);
+        name.setForeground(Color.white);
+        name.setBackground(new Color(53, 101, 77));
+        name.setPreferredSize(new Dimension(180, 50));
+        name.setHorizontalAlignment(JTextField.CENTER);
+        name.setBorder(new LineBorder(new Color(53, 101, 77),1));
+        // Text for Turn number and designs
+        turn = new JTextField();
+        turn.setEditable(false);
+        turn.setForeground(Color.white);
+        turn.setBackground(new Color(53, 101, 77));
+        turn.setPreferredSize(new Dimension(180, 50));
+        turn.setHorizontalAlignment(JTextField.CENTER);
+        turn.setBorder(new LineBorder(new Color(53, 101, 77),1));
+        // Text for Score and designs
+        score = new JTextField();
+        score.setEditable(false);
+        score.setForeground(Color.white);
+        score.setBackground(new Color(53, 101, 77));
+        score.setPreferredSize(new Dimension(180, 50));
+        score.setHorizontalAlignment(JTextField.CENTER);
+        score.setBorder(new LineBorder(new Color(53, 101, 77),1));
+
+        panel3.add(name);
+        panel3.add(turn);
+        panel3.add(score);
+        
+        portId = new JTextField();
+        portId.setEditable(false);
+        portId.setForeground(Color.white);
+        portId.setBackground(new Color(53, 101, 77));
+        portId.setPreferredSize(new Dimension(180, 20));
+        portId.setHorizontalAlignment(JTextField.CENTER);
+        portId.setBorder(new LineBorder(new Color(53, 101, 77),1));
         panel2.setLayout(bottomLayout);
         panel2.add(reset);
         panel2.add(help);
         panel2.add(exit);
         panel2.add(pId);
         panel2.add(players);
+        panel2.add(portId);
         // Combination of panels in the frame
         frame.getContentPane().add(BorderLayout.CENTER,panel);
         frame.getContentPane().add(BorderLayout.PAGE_END,panel2);
@@ -312,7 +354,7 @@ public class GUI implements Runnable {
             public void actionPerformed(ActionEvent e) {
               // Game stops cuz someone left; Print placeholder atm
               System.out.println("WARNING: "+ listener.getPlayerName() +" has left the game!");
-              listener.exit();
+              listener.returnToLogIn();
             }
         });
 	}
@@ -329,48 +371,10 @@ public class GUI implements Runnable {
     }
 
 	public void setInitialValues(String playerName, String portNumber) {
-        // Text for Player name and designs
-        JTextField name = new JTextField();
         name.setText("Name: "+ listener.getPlayerName());
-        name.setEditable(false);
-        name.setForeground(Color.white);
-        name.setBackground(new Color(53, 101, 77));
-        name.setPreferredSize(new Dimension(180, 50));
-        name.setHorizontalAlignment(JTextField.CENTER);
-        name.setBorder(new LineBorder(new Color(53, 101, 77),1));
-        // Text for Turn number and designs
-        JTextField turn = new JTextField();
         turn.setText("Turn: 01");
-        turn.setEditable(false);
-        turn.setForeground(Color.white);
-        turn.setBackground(new Color(53, 101, 77));
-        turn.setPreferredSize(new Dimension(180, 50));
-        turn.setHorizontalAlignment(JTextField.CENTER);
-        turn.setBorder(new LineBorder(new Color(53, 101, 77),1));
-        // Text for Score and designs
-        JTextField score = new JTextField();
         score.setText("Score: 00");
-        score.setEditable(false);
-        score.setForeground(Color.white);
-        score.setBackground(new Color(53, 101, 77));
-        score.setPreferredSize(new Dimension(180, 50));
-        score.setHorizontalAlignment(JTextField.CENTER);
-        score.setBorder(new LineBorder(new Color(53, 101, 77),1));
-        
-        panel3.add(name);
-        panel3.add(turn);
-        panel3.add(score);
-        
-        JTextField portId = new JTextField();
         portId.setText("Port: " + portNumber);
-        portId.setEditable(false);
-        portId.setForeground(Color.white);
-        portId.setBackground(new Color(53, 101, 77));
-        portId.setPreferredSize(new Dimension(180, 20));
-        portId.setHorizontalAlignment(JTextField.CENTER);
-        portId.setBorder(new LineBorder(new Color(53, 101, 77),1));
-
-        panel2.add(portId);
 	}
 
 	public void updateCards(String card1, String card2, String card3, String card4) {
@@ -393,5 +397,10 @@ public class GUI implements Runnable {
 	public void run() {
 		login.setVisible(false);
 		frame.setVisible(true);
+	}
+
+	public void returnToLogin() {
+		frame.setVisible(false);
+		login.setVisible(true);
 	}
 }

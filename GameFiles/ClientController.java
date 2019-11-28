@@ -58,9 +58,7 @@ public class ClientController implements ViewListener, HandlerListener {
 			e.printStackTrace();
 		}
 		
-		if(!message.equals("EX")) {
-			new Thread(new ClientSignalHandler(socket, this)).start();
-		}
+		new Thread(new ClientSignalHandler(socket, this)).start();
 	}
 
 	@Override
@@ -105,13 +103,15 @@ public class ClientController implements ViewListener, HandlerListener {
 	}
 
 	@Override
-	public void exit() {
-		sendMessage("EX" + String.format("%02d", playerID));
-		System.exit(0);
+	public void pressEnter() {
+		mainWindow.pressEnter();
 	}
 
 	@Override
-	public void pressEnter() {
-		mainWindow.pressEnter();
+	public void returnToLogIn() {
+		sendMessage("EX" + String.format("%02d", playerID));
+		setCards("BJ", "BJ", "BJ", "BJ");
+		clientWindowThread = new Thread(mainWindow);
+		mainWindow.returnToLogin();
 	}
 }

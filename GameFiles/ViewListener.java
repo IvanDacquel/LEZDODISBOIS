@@ -9,5 +9,5 @@ public interface ViewListener {
 
 	void startGame(String playerName, String serverAddress, String portNumber);
 
-	void exit();
+	void returnToLogIn();
 }

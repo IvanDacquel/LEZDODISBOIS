@@ -8,13 +8,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class ClientController implements ViewListener {
+public class ClientController implements ViewListener, HandlerListener {
 	private InetAddress host;
 	private DatagramSocket socket;
 	private String signal;
-	private String received;
 	
 	private GUI mainWindow;
+	private Thread clientWindowThread;
 	private String playerName;
 	private String portNumber;
 	private int playerID;
@@ -28,6 +28,7 @@ public class ClientController implements ViewListener {
 		}
 		
 		mainWindow = new GUI(this);
+		clientWindowThread = new Thread(mainWindow);
 	}
 	
 	//--------TEMP FUNCTION FOR WHEN SERVER HAS FINISHED GIVING CARDS-----------
@@ -58,37 +59,7 @@ public class ClientController implements ViewListener {
 			e.printStackTrace();
 		}
 		
-		receiveMessage();
-	}
-	
-	private void receiveMessage() {
-		received = new String();
-		
-		byte buf[] = new byte[256];
-		DatagramPacket packet = new DatagramPacket(buf, buf.length);
-		
-	    try {
-			socket.receive(packet);
-			received = new String(packet.getData(), 0, packet.getLength());
-			switch(received.substring(0, 2)) {
-				case "SC": 
-					initCards(received.substring(2, 4), received.substring(4, 6), received.substring(6, 8), received.substring(8, 10));
-					break;
-				case "UC":
-					cards.add(received.substring(2, 4));
-					mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
-					break;
-				case "WN":
-					mainWindow.pressEnter();
-					break;
-				default:
-					System.out.println("No match!");
-			}
-	        System.out.println("Received: " + received);
-	        
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		new Thread(new ClientSignalHandler(socket, this)).start();
 	}
 
 	@Override
@@ -109,7 +80,7 @@ public class ClientController implements ViewListener {
 			e.printStackTrace();
 		}
 		
-		mainWindow.startGame();
+		clientWindowThread.start();
 	}
 
 	@Override
@@ -139,5 +110,16 @@ public class ClientController implements ViewListener {
 	public void exit() {
 		sendMessage(playerName + " has left the game!");
 		System.exit(0);
+	}
+
+	@Override
+	public void addCard(String card) {
+		cards.add(card);
+		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
+	}
+
+	@Override
+	public void pressEnter() {
+		mainWindow.pressEnter();
 	}
 }

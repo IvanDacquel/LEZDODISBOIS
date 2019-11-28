@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
-public class GUI{
+public class GUI implements Runnable {
 	private ViewListener listener;
 
 	private JFrame login;
@@ -28,9 +28,9 @@ public class GUI{
 	private JButton button4;
 	
 	//===============================CHANGE LATER===================================
-//	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-	private final String IMG_FOLDER = "PNG-cards-1.3/";
+//	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	
 	public GUI(ViewListener listener) {
 		this.listener = listener;
@@ -389,10 +389,9 @@ public class GUI{
       frame.repaint();
 	}
 
-	public void startGame() {
+	@Override
+	public void run() {
 		login.setVisible(false);
 		frame.setVisible(true);
-		
-		//====================gui.run()?
 	}
 }

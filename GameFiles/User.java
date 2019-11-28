@@ -26,4 +26,12 @@ public class User{
   public static void decreaseUserCount(){
     User.users--;
   }
+
+  public InetAddress getIPAddress(){
+    return this.ipAddress;
+  }
+
+  public int getPort(){
+    return this.port;
+  }
 }

@@ -26,7 +26,7 @@ public class Server{
         int recepient_port = packet.getPort();
         this.users.add(new User(received, recepient, recepient_port));
 
-        received = "UC3H";
+        received = "SCAH2S4DTS";
         buf = received.getBytes();
         packet = new DatagramPacket(buf, buf.length, recepient, recepient_port);
         this.socket.send(packet);

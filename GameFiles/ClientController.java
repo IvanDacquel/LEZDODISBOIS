@@ -14,7 +14,7 @@ public class ClientController implements ViewListener {
 	private String signal;
 	private String received;
 	
-	private gui mainWindow;
+	private GUI mainWindow;
 	private String playerName;
 	private String portNumber;
 	private int playerID;
@@ -27,7 +27,7 @@ public class ClientController implements ViewListener {
 			cards.add("BJ");	
 		}
 		
-		mainWindow = new gui(this);
+		mainWindow = new GUI(this);
 	}
 	
 	//--------TEMP FUNCTION FOR WHEN SERVER HAS FINISHED GIVING CARDS-----------

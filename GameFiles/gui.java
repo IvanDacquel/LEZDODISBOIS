@@ -9,7 +9,7 @@ import java.awt.event.*;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
-public class gui{
+public class GUI{
 	private ViewListener listener;
 
 	private JFrame login;
@@ -32,7 +32,7 @@ public class gui{
 	//==============================================================================
 	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	
-	public gui(ViewListener listener) {
+	public GUI(ViewListener listener) {
 		this.listener = listener;
 
 		initLoginWindow();

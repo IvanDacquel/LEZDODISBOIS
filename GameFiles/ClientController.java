@@ -31,8 +31,7 @@ public class ClientController implements ViewListener, HandlerListener {
 		clientWindowThread = new Thread(mainWindow);
 	}
 	
-	//--------TEMP FUNCTION FOR WHEN SERVER HAS FINISHED GIVING CARDS-----------
-	public void initCards(String card1, String card2, String card3, String card4) {
+	public void setCards(String card1, String card2, String card3, String card4) {
 		System.out.println(card1);
 		System.out.println(card2);
 		System.out.println(card3);
@@ -109,12 +108,6 @@ public class ClientController implements ViewListener, HandlerListener {
 	public void exit() {
 		sendMessage("EX" + playerID);
 		System.exit(0);
-	}
-
-	@Override
-	public void addCard(String card) {
-		cards.add(card);
-		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), cards.get(3));
 	}
 
 	@Override

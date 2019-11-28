@@ -25,10 +25,7 @@ public class ClientSignalHandler implements Runnable {
 			message = new String(packet.getData(), 0, packet.getLength());
 			switch(message.substring(0, 2)) {
 				case "SC": 
-					listener.initCards(message.substring(2, 4), message.substring(4, 6), message.substring(6, 8), message.substring(8, 10));
-					break;
-				case "UC":
-					listener.addCard(message.substring(2, 4));
+					listener.setCards(message.substring(2, 4), message.substring(4, 6), message.substring(6, 8), message.substring(8, 10));
 					break;
 				case "WN":
 					listener.pressEnter();

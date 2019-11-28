@@ -59,7 +59,9 @@ public class ClientController implements ViewListener, HandlerListener {
 			e.printStackTrace();
 		}
 		
-		new Thread(new ClientSignalHandler(socket, this)).start();
+		if(!message.equals("EX")) {
+			new Thread(new ClientSignalHandler(socket, this)).start();
+		}
 	}
 
 	@Override
@@ -91,12 +93,9 @@ public class ClientController implements ViewListener, HandlerListener {
 	@Override
 	public void pickCard(int index) {
 		String code = String.format("%02d", playerID) + "PA" + cards.get(index);
-		
-		cards.remove(index);
-		mainWindow.updateCards(cards.get(0), cards.get(1), cards.get(2), "BJ");
 
-		sendMessage(code);
 		System.out.println(code);
+		sendMessage(code);
 	}
 
 	@Override
@@ -108,7 +107,7 @@ public class ClientController implements ViewListener, HandlerListener {
 
 	@Override
 	public void exit() {
-		sendMessage(playerName + " has left the game!");
+		sendMessage("EX" + playerID);
 		System.exit(0);
 	}
 

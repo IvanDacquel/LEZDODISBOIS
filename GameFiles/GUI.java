@@ -14,6 +14,12 @@ public class GUI implements Runnable {
 
 	private JFrame login;
 	private JFrame frame;
+
+	private JFrame help1;
+	private JFrame help2;
+
+	private JFrame about1;
+	private JFrame about2;
 	
 	private JPanel panel;
 	private JPanel panel2;
@@ -33,7 +39,7 @@ public class GUI implements Runnable {
 	private JTextField portId;
 	
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	//==============================================================================
 //	private final String IMG_FOLDER = "PNG-cards-1.3/";
 	
@@ -42,10 +48,76 @@ public class GUI implements Runnable {
 
 		initLoginWindow();
 		initGameWindow();
+		initHelpWindow();
+		initAboutWindow();
 	}
+
+
+	private void initAboutWindow() {
+		about1 = new JFrame("1-2-3PASS! - CMSC 137 Project");
+		about1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// Removes title bar; so the close (x) button is not seen
+		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+		about1.setSize(600,400);
+		about1.setResizable(false);
+		about1.setLocation(dim.width/2-login.getSize().width/2, dim.height/2-login.getSize().height/2);
+
+
+		JPanel top = new JPanel();
+		JPanel bottom = new JPanel();
+
+
+		GridLayout helplayout = new GridLayout(2,1,0,10);
+		about1.setLayout(helplayout);
+
+		ImageIcon ins = new ImageIcon("PNG-photos/next.png");
+		JLabel photo1 = new JLabel(ins);
+
+		top.add(photo1);
+		bottom.add(photo1);
+
+
+		about1.getContentPane().add(top);
+		about1.getContentPane().add(bottom);
+		about1.setVisible(false);
+	}
+
+
+	private void initHelpWindow() {
+		help1 = new JFrame("1-2-3-PASS! - CMSC 137 Project");
+	    help1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    // Removes title bar; so the close (x) button is not seen
+	    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+	    help1.setSize(600,400);
+	    help1.setResizable(false);
+	    help1.setLocation(dim.width/2-login.getSize().width/2, dim.height/2-login.getSize().height/2);
+
+	    JPanel top = new JPanel();
+	    JPanel bottom = new JPanel();
+
+
+
+
+	    GridLayout helplayout = new GridLayout(2,1,0,10);
+	   	help1.setLayout(helplayout);
+
+	   	ImageIcon ins = new ImageIcon("PNG-photos/next.png");
+	   	JLabel photo1 = new JLabel(ins);
+
+	   	top.add(photo1);
+	   	bottom.add(photo1);
+
+
+	   	help1.getContentPane().add(top);
+	   	help1.getContentPane().add(bottom);
+	   	help1.setVisible(false);
+	}
+
+
+
 	
 	private void initLoginWindow() {
-		login = new JFrame("Login");
+		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Removes title bar; so the close (x) button is not seen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -68,30 +140,45 @@ public class GUI implements Runnable {
         
         GridLayout credsLayout = new GridLayout(3,2,0,10);
         creds.setLayout(credsLayout);
-        JTextField test1 = new JTextField();
-        JTextField test2 = new JTextField();
-        JTextField test3 = new JTextField();
-        JTextField test4 = new JTextField();
-        JTextField test5 = new JTextField();
-        JTextField test6 = new JTextField();
-        test1.setText("NAME: ");
-        test3.setText("SERVER ID: ");
-        test5.setText("PORT ID: ");
 
-        GridLayout buttonlayout = new GridLayout(2,1,0,10);
+
+        JLabel name = new JLabel();
+        name.setText("NAME: ");
+        name.setHorizontalAlignment(JLabel.CENTER);
+
+
+        JLabel server = new JLabel();
+        server.setText("SERVER ID: ");
+       	server.setHorizontalAlignment(JLabel.CENTER);
+
+
+        JLabel port = new JLabel();
+        port.setText("PORT ID: ");
+        port.setHorizontalAlignment(JLabel.CENTER);
+
+
+        JTextField namefield = new JTextField();
+        JTextField serverfield = new JTextField();
+        JTextField portfield = new JTextField();
+
+
+        GridLayout buttonlayout = new GridLayout(3,1,0,10);
         buttons.setLayout(buttonlayout);
         JButton start = new JButton("START!");
         JButton about = new JButton("ABOUT");
-       
-        creds.add(test1);
-        creds.add(test2);
-        creds.add(test3);
-        creds.add(test4);
-        creds.add(test5);
-        creds.add(test6);
+        JButton help = new JButton("HELP");
+
+
+        creds.add(name);
+        creds.add(namefield);
+        creds.add(server);
+        creds.add(serverfield);
+        creds.add(port);
+        creds.add(portfield);
 
         buttons.add(start);
         buttons.add(about);
+        buttons.add(help);
 
         mainlog.add(gametitle);
         mainlog.add(creds);
@@ -104,22 +191,35 @@ public class GUI implements Runnable {
         start.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	listener.startGame(
-            			test2.getText().equals("") ?
+            			namefield.getText().equals("") ?
             					"DEFAULT_PLAYER_NAME" :
-            					test2.getText(),
-    					test4.getText().equals("") ?
+            					namefield.getText(),
+    					serverfield.getText().equals("") ?
             					"localhost" :
-            					test4.getText(),
-            			test6.getText().equals("") ?
+            					serverfield.getText(),
+            			portfield.getText().equals("") ?
             					"1234" :
-            					test6.getText()
+            					portfield.getText()
             	);
-              }
-          });
+            }
+        });
+
+        help.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listener.openHelp();
+            }
+        });
+
+
+        about.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+            	listener.openAbout();
+            }
+        });
 	}
 	
 	private void initGameWindow() {
-		frame = new JFrame("1-2-3-PASS!");
+		frame = new JFrame("1-2-3PASS! - CMSC 137 Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Removes title bar; so the close (x) button is not seen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -402,5 +502,17 @@ public class GUI implements Runnable {
 	public void returnToLogin() {
 		frame.setVisible(false);
 		login.setVisible(true);
+	}
+
+
+	public void openHelp() {
+		login.setVisible(false);
+		help1.setVisible(true);
+	}
+
+
+	public void openAbout() {
+		login.setVisible(false);
+		about1.setVisible(true);
 	}
 }

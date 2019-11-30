@@ -7,6 +7,13 @@ public interface ViewListener {
 
 	void shuffle();
 
+	
+	void openHelp();
+
+
+	void openAbout();
+
+
 	void startGame(String playerName, String serverAddress, String portNumber);
 
 	void returnToLogIn();

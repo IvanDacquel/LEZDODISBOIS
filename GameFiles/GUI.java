@@ -3,10 +3,12 @@
 //  -javac gui.java
 //  -java gui <username> <port no.>
 //
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.Color;
+import java.io.IOException;
+
 import javax.swing.border.LineBorder;
 
 public class GUI implements Runnable {
@@ -14,12 +16,8 @@ public class GUI implements Runnable {
 
 	private JFrame login;
 	private JFrame frame;
-
-	private JFrame help1;
-	private JFrame help2;
-
-	private JFrame about1;
-	private JFrame about2;
+	private JFrame help;
+	private JFrame about;
 	
 	private JPanel panel;
 	private JPanel panel2;
@@ -38,10 +36,13 @@ public class GUI implements Runnable {
 	private JTextField score;
 	private JTextField portId;
 	
+	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER = "PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-//	private final String IMG_FOLDER = "PNG-cards-1.3/";
+//	private final String IMG_FOLDER_APP = "PNG-photos/";
+//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 	
 	public GUI(ViewListener listener) {
 		this.listener = listener;
@@ -54,63 +55,206 @@ public class GUI implements Runnable {
 
 
 	private void initAboutWindow() {
-		about1 = new JFrame("1-2-3PASS! - CMSC 137 Project");
-		about1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		// Removes title bar; so the close (x) button is not seen
-		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-		about1.setSize(600,400);
-		about1.setResizable(false);
-		about1.setLocation(dim.width/2-login.getSize().width/2, dim.height/2-login.getSize().height/2);
+		about = new JFrame();
+		about.setUndecorated(true);
+	    about.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    about.setSize(600,400);
+	    about.setResizable(false);
+	    about.setLocationRelativeTo(null);
+	    
+	    JPanel mainPanel = new JPanel(new CardLayout());
+	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    about.add(mainPanel, BorderLayout.CENTER);
+	    about.add(credits, BorderLayout.SOUTH);
+	    
+		CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
+	    JPanel aboutCard1 = new JPanel(new GridBagLayout());
+	    JPanel aboutCard2 = new JPanel(new GridBagLayout());
+	    
+	    mainPanel.add(aboutCard1, "Page 1");
+	    mainPanel.add(aboutCard2, "Page 2");
+	    
+	    GridBagConstraints c = new GridBagConstraints();
+	    
+	    JPanel contentArea1 = new JPanel();
+	    /*
+	    	Place content you want to add to page 1 here, inside contentArea1
+	    */
+	    
+	    JPanel contentArea2 = new JPanel();
+	    /*
+			Place content you want to add to page 1 here, inside contentArea2
+		*/
+	    
+	    JButton returnButton1 = new JButton("RETURN");
+	    returnButton1.addActionListener(new ActionListener() {
 
-		JPanel top = new JPanel();
-		JPanel bottom = new JPanel();
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				about.setVisible(false);
+				login.setVisible(true);
+			}
+	    	
+	    });
+	    
+	    JButton returnButton2 = new JButton("RETURN");
+	    returnButton2.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				about.setVisible(false);
+				login.setVisible(true);
+			}
+	    	
+	    });
+	    
+	    JButton nextButton1 = new JButton();
+	    try {
+	    	// Should replace to this commented out line after development
+//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "next.png"));
+			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    nextButton1.addActionListener(new ActionListener() {
 
-		GridLayout helplayout = new GridLayout(2,1,0,10);
-		about1.setLayout(helplayout);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 2");
+			}
+	    	
+	    });
+	    
+	    JButton nextButton2 = new JButton("<=");
+	    nextButton2.addActionListener(new ActionListener() {
 
-		ImageIcon ins = new ImageIcon("PNG-photos/next.png");
-		JLabel photo1 = new JLabel(ins);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 1");
+			}
+	    	
+	    });
 
-		top.add(photo1);
-		bottom.add(photo1);
-
-
-		about1.getContentPane().add(top);
-		about1.getContentPane().add(bottom);
-		about1.setVisible(false);
+	    c.anchor = GridBagConstraints.SOUTH;
+	    c.weightx = c.weighty = 1;
+	    c.gridheight = 6;
+	    c.gridwidth = 5;
+	    c.gridx = c.gridy = 0;
+	    aboutCard1.add(contentArea1, c);
+	    aboutCard2.add(contentArea2, c);
+	    
+	    c.gridheight = c.gridwidth = 1;
+	    c.gridy = 6;
+	    aboutCard1.add(returnButton1, c);
+	    aboutCard2.add(nextButton2, c);
+	    
+	    c.gridx = 4;
+	    aboutCard1.add(nextButton1, c);
+	    aboutCard2.add(returnButton2, c);
 	}
 
 
 	private void initHelpWindow() {
-		help1 = new JFrame("1-2-3-PASS! - CMSC 137 Project");
-	    help1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    // Removes title bar; so the close (x) button is not seen
-	    Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-	    help1.setSize(600,400);
-	    help1.setResizable(false);
-	    help1.setLocation(dim.width/2-login.getSize().width/2, dim.height/2-login.getSize().height/2);
+		help = new JFrame();
+		help.setUndecorated(true);
+	    help.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    help.setSize(600,400);
+	    help.setResizable(false);
+	    help.setLocationRelativeTo(null);
+	    
+	    JPanel mainPanel = new JPanel(new CardLayout());
+	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    help.add(mainPanel, BorderLayout.CENTER);
+	    help.add(credits, BorderLayout.SOUTH);
+	    
+		CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
-	    JPanel top = new JPanel();
-	    JPanel bottom = new JPanel();
+	    JPanel helpCard1 = new JPanel(new GridBagLayout());
+	    JPanel helpCard2 = new JPanel(new GridBagLayout());
+	    
+	    mainPanel.add(helpCard1, "Page 1");
+	    mainPanel.add(helpCard2, "Page 2");
+	    
+	    GridBagConstraints c = new GridBagConstraints();
+	    
+	    JPanel contentArea1 = new JPanel();
+	    /*
+	    	Place content you want to add to page 1 here, inside contentArea1
+	    */
+	    
+	    JPanel contentArea2 = new JPanel();
+	    /*
+			Place content you want to add to page 1 here, inside contentArea2
+		*/
+	    
+	    JButton returnButton1 = new JButton("RETURN");
+	    returnButton1.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				help.setVisible(false);
+				login.setVisible(true);
+			}
+	    	
+	    });
+	    
+	    JButton returnButton2 = new JButton("RETURN");
+	    returnButton2.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				help.setVisible(false);
+				login.setVisible(true);
+			}
+	    	
+	    });
+	    
+	    JButton nextButton1 = new JButton();
+	    try {
+	    	// Should replace to this commented out line after development
+//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "next.png"));
+			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	    nextButton1.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 2");
+			}
+	    	
+	    });
+	    
+	    JButton nextButton2 = new JButton("<=");
+	    nextButton2.addActionListener(new ActionListener() {
 
-	    GridLayout helplayout = new GridLayout(2,1,0,10);
-	   	help1.setLayout(helplayout);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 1");
+			}
+	    	
+	    });
 
-	   	ImageIcon ins = new ImageIcon("PNG-photos/next.png");
-	   	JLabel photo1 = new JLabel(ins);
-
-	   	top.add(photo1);
-	   	bottom.add(photo1);
-
-
-	   	help1.getContentPane().add(top);
-	   	help1.getContentPane().add(bottom);
-	   	help1.setVisible(false);
+	    c.anchor = GridBagConstraints.SOUTH;
+	    c.weightx = c.weighty = 1;
+	    c.gridheight = 6;
+	    c.gridwidth = 5;
+	    c.gridx = c.gridy = 0;
+	    helpCard1.add(contentArea1, c);
+	    helpCard2.add(contentArea2, c);
+	    
+	    c.gridheight = c.gridwidth = 1;
+	    c.gridy = 6;
+	    helpCard1.add(returnButton1, c);
+	    helpCard2.add(nextButton2, c);
+	    
+	    c.gridx = 4;
+	    helpCard1.add(nextButton1, c);
+	    helpCard2.add(returnButton2, c);
 	}
 
 
@@ -118,8 +262,8 @@ public class GUI implements Runnable {
 	
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
+//		login.setUndecorated(true);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Removes title bar; so the close (x) button is not seen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         login.setSize(600,400);
         login.setResizable(false);
@@ -236,10 +380,10 @@ public class GUI implements Runnable {
         JPanel midBot = new JPanel();
         panel.setBackground(new Color(53, 101, 77));
         // Creates the card buttons
-        button1 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
-        button4 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button1 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button2 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button3 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
+        button4 = new JButton(new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS + "BJ.png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH)));
         button1.setEnabled(false);
         button2.setEnabled(false);
         button3.setEnabled(false);
@@ -478,10 +622,10 @@ public class GUI implements Runnable {
 	}
 
 	public void updateCards(String card1, String card2, String card3, String card4) {
-      ImageIcon newImg1 = new ImageIcon(((new ImageIcon(IMG_FOLDER+card1+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
-      ImageIcon newImg2 = new ImageIcon(((new ImageIcon(IMG_FOLDER+card2+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
-      ImageIcon newImg3 = new ImageIcon(((new ImageIcon(IMG_FOLDER+card3+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
-      ImageIcon newImg4 = new ImageIcon(((new ImageIcon(IMG_FOLDER+card4+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
+      ImageIcon newImg1 = new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS+card1+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
+      ImageIcon newImg2 = new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS+card2+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
+      ImageIcon newImg3 = new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS+card3+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
+      ImageIcon newImg4 = new ImageIcon(((new ImageIcon(IMG_FOLDER_CARDS+card4+".png")).getImage()).getScaledInstance(100, 146, java.awt.Image.SCALE_SMOOTH));
       button1.setIcon(newImg1);
       button2.setIcon(newImg2);
       button3.setIcon(newImg3);
@@ -507,12 +651,12 @@ public class GUI implements Runnable {
 
 	public void openHelp() {
 		login.setVisible(false);
-		help1.setVisible(true);
+		help.setVisible(true);
 	}
 
 
 	public void openAbout() {
 		login.setVisible(false);
-		about1.setVisible(true);
+		about.setVisible(true);
 	}
 }

@@ -61,6 +61,7 @@ public class GUI implements Runnable {
 	    about.setSize(600,400);
 	    about.setResizable(false);
 	    about.setLocationRelativeTo(null);
+	    about.setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -163,6 +164,7 @@ public class GUI implements Runnable {
 	    help.setSize(600,400);
 	    help.setResizable(false);
 	    help.setLocationRelativeTo(null);
+	    help.setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -262,7 +264,7 @@ public class GUI implements Runnable {
 	
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
-//		login.setUndecorated(true);
+		login.setUndecorated(true);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         login.setSize(600,400);
@@ -309,8 +311,8 @@ public class GUI implements Runnable {
         GridLayout buttonlayout = new GridLayout(3,1,0,10);
         buttons.setLayout(buttonlayout);
         JButton start = new JButton("START!");
-        JButton about = new JButton("ABOUT");
-        JButton help = new JButton("HELP");
+        JButton aboutButton = new JButton("ABOUT");
+        JButton helpButton = new JButton("HELP");
 
 
         creds.add(name);
@@ -321,8 +323,8 @@ public class GUI implements Runnable {
         creds.add(portfield);
 
         buttons.add(start);
-        buttons.add(about);
-        buttons.add(help);
+        buttons.add(aboutButton);
+        buttons.add(helpButton);
 
         mainlog.add(gametitle);
         mainlog.add(creds);
@@ -348,16 +350,18 @@ public class GUI implements Runnable {
             }
         });
 
-        help.addActionListener(new ActionListener() {
+        helpButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	listener.openHelp();
+        		login.setVisible(false);
+        		help.setVisible(true);
             }
         });
 
 
-        about.addActionListener(new ActionListener() {
+        aboutButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-            	listener.openAbout();
+        		login.setVisible(false);
+        		about.setVisible(true);
             }
         });
 	}
@@ -646,17 +650,5 @@ public class GUI implements Runnable {
 	public void returnToLogin() {
 		frame.setVisible(false);
 		login.setVisible(true);
-	}
-
-
-	public void openHelp() {
-		login.setVisible(false);
-		help.setVisible(true);
-	}
-
-
-	public void openAbout() {
-		login.setVisible(false);
-		about.setVisible(true);
 	}
 }

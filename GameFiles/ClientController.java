@@ -61,17 +61,6 @@ public class ClientController implements ViewListener, HandlerListener {
 		new Thread(new ClientSignalHandler(socket, this)).start();
 	}
 
-
-	@Override
-	public void openHelp() {
-		mainWindow.openHelp();
-	}
-
-	@Override
-	public void openAbout() {
-		mainWindow.openAbout();
-	}
-
 	@Override
 	public void startGame(String playerName, String serverAddress, String portNumber) {
 		this.playerName = playerName;

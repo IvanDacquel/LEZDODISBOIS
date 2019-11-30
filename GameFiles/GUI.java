@@ -272,75 +272,82 @@ public class GUI implements Runnable {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
 		login.setUndecorated(true);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         login.setSize(600,400);
         login.setResizable(false);
-        login.setLocation(dim.width/2-login.getSize().width/2, dim.height/2-login.getSize().height/2);
+        login.setLocationRelativeTo(null);
 
-        JPanel creds = new JPanel();
-        JPanel mainlog = new JPanel();
-        JPanel buttons = new JPanel();
+	    JPanel mainPanel = new JPanel(new GridBagLayout());
+	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 
-        creds.setBackground(new Color(53, 101, 77));
-        mainlog.setBackground(new Color(53, 101, 77));
-        buttons.setBackground(new Color(53, 101, 77));
+	    // CHANGE COLOR HERE
+	    login.getContentPane().setBackground(new Color(122, 182, 72));
+	    mainPanel.setBackground(new Color(122, 182, 72));
+      
+	    login.add(mainPanel, BorderLayout.CENTER);
+	    login.add(credits, BorderLayout.SOUTH);
+	    
+	    // Change to image?
+	    JLabel tempTitle = new JLabel("1-2-3 PASS!");
+	    
+	    JLabel nameLabel = new JLabel("Enter Name:");
+	    JLabel serverLabel = new JLabel("Enter Server's IP");
+	    JLabel portLabel = new JLabel("Enter Port:");
 
-        GridLayout loginlayout = new GridLayout(3,1,0,10);
-        mainlog.setLayout(loginlayout);
-        JTextField gametitle = new JTextField();
-        gametitle.setText("1-2-3 Pass");
+        JTextField namefield = new JTextField(20);
+        JTextField serverfield = new JTextField(20);
+        JTextField portfield = new JTextField(20);
         
-        GridLayout credsLayout = new GridLayout(3,2,0,10);
-        creds.setLayout(credsLayout);
-
-
-        JLabel name = new JLabel();
-        name.setText("NAME: ");
-        name.setHorizontalAlignment(JLabel.CENTER);
-
-
-        JLabel server = new JLabel();
-        server.setText("SERVER ID: ");
-       	server.setHorizontalAlignment(JLabel.CENTER);
-
-
-        JLabel port = new JLabel();
-        port.setText("PORT ID: ");
-        port.setHorizontalAlignment(JLabel.CENTER);
-
-
-        JTextField namefield = new JTextField();
-        JTextField serverfield = new JTextField();
-        JTextField portfield = new JTextField();
-
-
-        GridLayout buttonlayout = new GridLayout(3,1,0,10);
-        buttons.setLayout(buttonlayout);
-        JButton start = new JButton("START!");
-        JButton aboutButton = new JButton("ABOUT");
+        JButton startButton = new JButton("START!");
         JButton helpButton = new JButton("HELP");
+        JButton aboutButton = new JButton("ABOUT");
 
-
-        creds.add(name);
-        creds.add(namefield);
-        creds.add(server);
-        creds.add(serverfield);
-        creds.add(port);
-        creds.add(portfield);
-
-        buttons.add(start);
-        buttons.add(aboutButton);
-        buttons.add(helpButton);
-
-        mainlog.add(gametitle);
-        mainlog.add(creds);
-        mainlog.add(buttons);
-
-
-        login.getContentPane().add(mainlog);
-        login.setVisible(true);
+        startButton.setPreferredSize(new Dimension(90, 30));
+        helpButton.setPreferredSize(new Dimension(90, 30));
+        aboutButton.setPreferredSize(new Dimension(90, 30));
+	    
+	    GridBagConstraints c = new GridBagConstraints();
+	    
+	    c.anchor = GridBagConstraints.SOUTH;
+	    c.weightx = c.weighty = 1;
+	    c.gridheight = 2;
+	    c.gridwidth = 6;
+	    c.gridx = c.gridy = 0;
+	    mainPanel.add(tempTitle, c);
+	    
+	    c.gridheight = 1;
+	    c.gridwidth = 2;
+	    
+	    c.gridx = 2;
+	    c.gridy = 5;
+	    mainPanel.add(startButton, c);
+	    
+	    c.gridy = 6;
+	    mainPanel.add(helpButton, c);
+	    
+	    c.gridy = 7;
+	    mainPanel.add(aboutButton, c);
+	    
+	    c.gridx = 1;
+	    c.gridy = 2;
+	    mainPanel.add(nameLabel, c);
+	    
+	    c.gridy = 3;
+	    mainPanel.add(serverLabel, c);
+	    
+	    c.gridy = 4;
+	    mainPanel.add(portLabel, c);
+	    
+	    c.gridx = 3;
+	    c.gridy = 2;
+	    mainPanel.add(namefield, c);
+	    
+	    c.gridy = 3;
+	    mainPanel.add(serverfield, c);
+	    
+	    c.gridy = 4;
+	    mainPanel.add(portfield, c);
         
-        start.addActionListener(new ActionListener() {
+        startButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             	listener.startGame(
             			namefield.getText().equals("") ?
@@ -370,6 +377,8 @@ public class GUI implements Runnable {
         		about.setVisible(true);
             }
         });
+
+        login.setVisible(true);
 	}
 	
 	private void initGameWindow() {

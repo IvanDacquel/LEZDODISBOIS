@@ -61,7 +61,7 @@ public class GUI implements Runnable {
 	    about.setSize(600,400);
 	    about.setResizable(false);
 	    about.setLocationRelativeTo(null);
-	    about.setBackground(new Color(122, 182, 72));
+	    about.getContentPane().setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -72,6 +72,9 @@ public class GUI implements Runnable {
 
 	    JPanel aboutCard1 = new JPanel(new GridBagLayout());
 	    JPanel aboutCard2 = new JPanel(new GridBagLayout());
+
+	    aboutCard1.setBackground(new Color(122, 182, 72));
+	    aboutCard2.setBackground(new Color(122, 182, 72));
 	    
 	    mainPanel.add(aboutCard1, "Page 1");
 	    mainPanel.add(aboutCard2, "Page 2");
@@ -164,7 +167,7 @@ public class GUI implements Runnable {
 	    help.setSize(600,400);
 	    help.setResizable(false);
 	    help.setLocationRelativeTo(null);
-	    help.setBackground(new Color(122, 182, 72));
+	    help.getContentPane().setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -175,6 +178,9 @@ public class GUI implements Runnable {
 
 	    JPanel helpCard1 = new JPanel(new GridBagLayout());
 	    JPanel helpCard2 = new JPanel(new GridBagLayout());
+
+	    helpCard1.setBackground(new Color(122, 182, 72));
+	    helpCard2.setBackground(new Color(122, 182, 72));
 	    
 	    mainPanel.add(helpCard1, "Page 1");
 	    mainPanel.add(helpCard2, "Page 2");

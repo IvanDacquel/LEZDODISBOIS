@@ -38,8 +38,8 @@ public class GUI implements Runnable {
 	
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 	//==============================================================================
 //	private final String IMG_FOLDER_APP = "PNG-photos/";
 //	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
@@ -64,7 +64,7 @@ public class GUI implements Runnable {
 	    about.getContentPane().setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
-	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 	    about.add(mainPanel, BorderLayout.CENTER);
 	    about.add(credits, BorderLayout.SOUTH);
 	    
@@ -170,7 +170,7 @@ public class GUI implements Runnable {
 	    help.getContentPane().setBackground(new Color(122, 182, 72));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
-	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 	    help.add(mainPanel, BorderLayout.CENTER);
 	    help.add(credits, BorderLayout.SOUTH);
 	    
@@ -270,14 +270,14 @@ public class GUI implements Runnable {
 	
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
-		login.setUndecorated(true);
+		//login.setUndecorated(true);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         login.setSize(600,400);
         login.setResizable(false);
         login.setLocationRelativeTo(null);
 
 	    JPanel mainPanel = new JPanel(new GridBagLayout());
-	    JLabel credits = new JLabel("© Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 
 	    // CHANGE COLOR HERE
 	    login.getContentPane().setBackground(new Color(122, 182, 72));

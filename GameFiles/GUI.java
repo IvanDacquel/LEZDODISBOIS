@@ -61,7 +61,7 @@ public class GUI implements Runnable {
 	    about.setSize(600,400);
 	    about.setResizable(false);
 	    about.setLocationRelativeTo(null);
-	    about.getContentPane().setBackground(new Color(122, 182, 72));
+	    about.getContentPane().setBackground(new Color(53, 101, 77));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -73,8 +73,8 @@ public class GUI implements Runnable {
 	    JPanel aboutCard1 = new JPanel(new GridBagLayout());
 	    JPanel aboutCard2 = new JPanel(new GridBagLayout());
 
-	    aboutCard1.setBackground(new Color(122, 182, 72));
-	    aboutCard2.setBackground(new Color(122, 182, 72));
+	    aboutCard1.setBackground(new Color(53, 101, 77));
+	    aboutCard2.setBackground(new Color(53, 101, 77));
 	    
 	    mainPanel.add(aboutCard1, "Page 1");
 	    mainPanel.add(aboutCard2, "Page 2");
@@ -130,16 +130,29 @@ public class GUI implements Runnable {
 			}
 	    	
 	    });
-	    
-	    JButton nextButton2 = new JButton("<=");
-	    nextButton2.addActionListener(new ActionListener() {
+
+
+
+
+
+	   	JButton prevButton1 = new JButton();
+	    try {
+	    	// Should replace to this commented out line after development
+//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "previous.png"));
+			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    prevButton1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				cardLayout.show(mainPanel, "Page 1");
 			}
-	    	
 	    });
+
 
 	    c.anchor = GridBagConstraints.SOUTH;
 	    c.weightx = c.weighty = 1;
@@ -152,7 +165,7 @@ public class GUI implements Runnable {
 	    c.gridheight = c.gridwidth = 1;
 	    c.gridy = 6;
 	    aboutCard1.add(returnButton1, c);
-	    aboutCard2.add(nextButton2, c);
+	    aboutCard2.add(prevButton1, c);
 	    
 	    c.gridx = 4;
 	    aboutCard1.add(nextButton1, c);
@@ -167,7 +180,7 @@ public class GUI implements Runnable {
 	    help.setSize(600,400);
 	    help.setResizable(false);
 	    help.setLocationRelativeTo(null);
-	    help.getContentPane().setBackground(new Color(122, 182, 72));
+	    help.getContentPane().setBackground(new Color(53, 101, 77));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
 	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
@@ -176,16 +189,20 @@ public class GUI implements Runnable {
 	    
 		CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
+		//ImagePanel helpCard = new ImagePanel(new ImageIcon(getClass().getResource(IMG_FOLDER_APP + "resize.png")).getImage());
+
 	    JPanel helpCard1 = new JPanel(new GridBagLayout());
 	    JPanel helpCard2 = new JPanel(new GridBagLayout());
 
-	    helpCard1.setBackground(new Color(122, 182, 72));
-	    helpCard2.setBackground(new Color(122, 182, 72));
+	    helpCard1.setBackground(new Color(53, 101, 77));
+	    helpCard2.setBackground(new Color(53, 101, 77));
 	    
 	    mainPanel.add(helpCard1, "Page 1");
 	    mainPanel.add(helpCard2, "Page 2");
 	    
 	    GridBagConstraints c = new GridBagConstraints();
+
+
 	    
 	    JPanel contentArea1 = new JPanel();
 	    /*
@@ -237,8 +254,17 @@ public class GUI implements Runnable {
 	    	
 	    });
 	    
-	    JButton nextButton2 = new JButton("<=");
-	    nextButton2.addActionListener(new ActionListener() {
+	    JButton prevButton1 = new JButton();
+	    try {
+	    	// Should replace to this commented out line after development
+//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "previous.png"));
+			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	    prevButton1.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -258,7 +284,7 @@ public class GUI implements Runnable {
 	    c.gridheight = c.gridwidth = 1;
 	    c.gridy = 6;
 	    helpCard1.add(returnButton1, c);
-	    helpCard2.add(nextButton2, c);
+	    helpCard2.add(prevButton1, c);
 	    
 	    c.gridx = 4;
 	    helpCard1.add(nextButton1, c);
@@ -280,8 +306,8 @@ public class GUI implements Runnable {
 	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 
 	    // CHANGE COLOR HERE
-	    login.getContentPane().setBackground(new Color(122, 182, 72));
-	    mainPanel.setBackground(new Color(122, 182, 72));
+	    login.getContentPane().setBackground(new Color(53, 101, 77));
+	    mainPanel.setBackground(new Color(53, 101, 77));
       
 	    login.add(mainPanel, BorderLayout.CENTER);
 	    login.add(credits, BorderLayout.SOUTH);

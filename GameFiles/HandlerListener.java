@@ -5,4 +5,6 @@ public interface HandlerListener {
 
 	void pressEnter();
 
+	void setUserId(int id);
+
 }

@@ -143,4 +143,10 @@ public class ClientController implements ViewListener, HandlerListener {
 		// Tells the UI to hide the game window and show the log in window
 		mainWindow.returnToLogin();
 	}
+
+	// Called after receiving the player's assigned ID from the server
+	@Override
+	public void setUserId(int id) {
+		playerID = id;
+	}
 }

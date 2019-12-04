@@ -59,8 +59,8 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 ## Designations
   
 #### Signals: <br />
-  +01 = Request Cards <br />
-  +02 = Send Card/s <br />
+  +SC = Send Cards <br />
+  +TM = Timer <br />
   
 Player ID: 01,02,03,.....,12,13 <br />
 

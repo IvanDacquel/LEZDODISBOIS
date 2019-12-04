@@ -3,6 +3,7 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Collections;
 
 public class Server extends UDPComponent implements GameConstants{
@@ -10,6 +11,7 @@ public class Server extends UDPComponent implements GameConstants{
 	private int maxPlayers;
 	private ArrayList<User> players;
 	private Thread thread;
+  private HashMap<User, String> log;
 
 	/*
 	 * Constructs a server by binding a DatagramSocket to a specified
@@ -17,10 +19,10 @@ public class Server extends UDPComponent implements GameConstants{
 	 */
 	public Server(int port, int maxPlayers) throws IOException{
 		super(port);
-		this.gameState = WAITING_FOR_PLAYERS;
 		this.maxPlayers = maxPlayers;
 		this.players = new ArrayList<User>();
-		this.run();
+
+    this.run();
 	}
 
 	/*
@@ -84,9 +86,14 @@ public class Server extends UDPComponent implements GameConstants{
 
         User player = new User(nickname, playerAddress, port);
         this.players.add(player);
+        new Thread(new Handler(this, player)).start();
       }
 
       this.distributeCards();
+
+      while(true){
+
+      }
 			this.close();
 		}catch(IOException e){
 			System.out.println("Cannot listen to " + this.socket.getPort());

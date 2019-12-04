@@ -58,7 +58,7 @@ public class GUI implements Runnable {
 		about = new JFrame();
 		about.setUndecorated(true);
 	    about.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    about.setSize(600,400);
+	    about.setSize(711,400);
 	    about.setResizable(false);
 	    about.setLocationRelativeTo(null);
 	    about.getContentPane().setBackground(new Color(53, 101, 77));
@@ -74,7 +74,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about1.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about1.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -84,7 +84,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about2.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about2.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -94,7 +94,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about3.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about3.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -104,7 +104,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about4.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about4.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -114,7 +114,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about5.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about5.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -124,7 +124,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about6.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about6.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -134,7 +134,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about7.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about7.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -164,7 +164,12 @@ public class GUI implements Runnable {
 	    padding6.setOpaque(false);
 	    padding7.setOpaque(false);
 
-	    JButton returnButton1 = new JButton("RETURN");
+	    JButton returnButton1 = new JButton();
+	    returnButton1.setBorder(BorderFactory.createEmptyBorder());
+	    returnButton1.setBorderPainted(false);
+    	returnButton1.setFocusPainted(false);
+    	returnButton1.setContentAreaFilled(false);
+
 	    returnButton1.addActionListener(new ActionListener() {
 
 			@Override
@@ -175,7 +180,12 @@ public class GUI implements Runnable {
 
 	    });
 
-	    JButton returnButton2 = new JButton("RETURN");
+	    JButton returnButton2 = new JButton();
+	    returnButton2.setBorder(BorderFactory.createEmptyBorder());
+	    returnButton2.setBorderPainted(false);
+    	returnButton2.setFocusPainted(false);
+    	returnButton2.setContentAreaFilled(false);
+
 	    returnButton2.addActionListener(new ActionListener() {
 
 			@Override
@@ -186,23 +196,59 @@ public class GUI implements Runnable {
 
 	    });
 
+	    try {
+	    	Image img1 = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "returnleft.png"));
+	    	returnButton1.setIcon(new ImageIcon(img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+	    	Image img2 = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "returnright.png"));
+	    	returnButton2.setIcon(new ImageIcon(img2.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	    JButton nextButton1 = new JButton();
+	    nextButton1.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton1.setBorderPainted(false);
+    	nextButton1.setFocusPainted(false);
+    	nextButton1.setContentAreaFilled(false);
+
 	    JButton nextButton2 = new JButton();
+	   	nextButton2.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton2.setBorderPainted(false);
+    	nextButton2.setFocusPainted(false);
+    	nextButton2.setContentAreaFilled(false);
+
 	    JButton nextButton3 = new JButton();
+	   	nextButton3.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton3.setBorderPainted(false);
+    	nextButton3.setFocusPainted(false);
+    	nextButton3.setContentAreaFilled(false);
+
 	    JButton nextButton4 = new JButton();
+	   	nextButton4.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton4.setBorderPainted(false);
+    	nextButton4.setFocusPainted(false);
+    	nextButton4.setContentAreaFilled(false);
+
 	    JButton nextButton5 = new JButton();
+	   	nextButton5.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton5.setBorderPainted(false);
+    	nextButton5.setFocusPainted(false);
+    	nextButton5.setContentAreaFilled(false);
+
 	    JButton nextButton6 = new JButton();
+	   	nextButton6.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton6.setBorderPainted(false);
+    	nextButton6.setFocusPainted(false);
+    	nextButton6.setContentAreaFilled(false);
 
 	    try {
-	    	// Should replace to this commented out line after development
-//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "next.png"));
-			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton5.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton6.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton2.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton3.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton4.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton5.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton6.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -262,22 +308,48 @@ public class GUI implements Runnable {
 	    });
 
 	   	JButton prevButton1 = new JButton();
+	    prevButton1.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton1.setBorderPainted(false);
+    	prevButton1.setFocusPainted(false);
+    	prevButton1.setContentAreaFilled(false);
+
 	   	JButton prevButton2 = new JButton();
+	    prevButton2.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton2.setBorderPainted(false);
+    	prevButton2.setFocusPainted(false);
+    	prevButton2.setContentAreaFilled(false);
+
 	   	JButton prevButton3 = new JButton();
+	    prevButton3.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton3.setBorderPainted(false);
+    	prevButton3.setFocusPainted(false);
+    	prevButton3.setContentAreaFilled(false);
+
 	   	JButton prevButton4 = new JButton();
+	    prevButton4.setBorder(BorderFactory.createEmptyBorder());
+    	prevButton4.setFocusPainted(false);
+    	prevButton4.setContentAreaFilled(false);
+
 	   	JButton prevButton5 = new JButton();
+	    prevButton5.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton5.setBorderPainted(false);
+    	prevButton5.setFocusPainted(false);
+    	prevButton5.setContentAreaFilled(false);
+
 	   	JButton prevButton6 = new JButton();
+	    prevButton6.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton6.setBorderPainted(false);
+    	prevButton6.setFocusPainted(false);
+    	prevButton6.setContentAreaFilled(false);
 
 	    try {
-	    	// Should replace to this commented out line after development
-//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "previous.png"));
-			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton5.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton6.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton2.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton3.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton4.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton5.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton6.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -371,7 +443,7 @@ public class GUI implements Runnable {
 		help = new JFrame();
 		help.setUndecorated(true);
 	    help.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    help.setSize(600,400);
+	    help.setSize(711,400);
 	    help.setResizable(false);
 	    help.setLocationRelativeTo(null);
 	    help.getContentPane().setBackground(new Color(53, 101, 77));
@@ -387,7 +459,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help1.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help1.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -397,7 +469,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help2.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help2.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -407,7 +479,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help3.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help3.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -417,7 +489,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help4.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help4.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -427,7 +499,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help5.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help5.png").getImage(), 0, 0, 711, 400, null);
 	    	}
 	    };
 
@@ -451,7 +523,12 @@ public class GUI implements Runnable {
 	    padding4.setOpaque(false);
 	    padding5.setOpaque(false);
 
-	    JButton returnButton1 = new JButton("RETURN");
+	    JButton returnButton1 = new JButton();
+	    returnButton1.setBorder(BorderFactory.createEmptyBorder());
+	    returnButton1.setBorderPainted(false);
+    	returnButton1.setFocusPainted(false);
+    	returnButton1.setContentAreaFilled(false);
+
 	    returnButton1.addActionListener(new ActionListener() {
 
 			@Override
@@ -462,7 +539,13 @@ public class GUI implements Runnable {
 
 	    });
 
-	    JButton returnButton2 = new JButton("RETURN");
+	    JButton returnButton2 = new JButton();
+	    returnButton2.setBorder(BorderFactory.createEmptyBorder());
+	    returnButton2.setBorderPainted(false);
+    	returnButton2.setFocusPainted(false);
+    	returnButton2.setContentAreaFilled(false);
+
+
 	    returnButton2.addActionListener(new ActionListener() {
 
 			@Override
@@ -473,19 +556,46 @@ public class GUI implements Runnable {
 
 	    });
 
+	    try {
+	    	Image img1 = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "returnleft.png"));
+	    	returnButton1.setIcon(new ImageIcon(img1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+	    	Image img2 = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "returnright.png"));
+	    	returnButton2.setIcon(new ImageIcon(img2.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	    JButton nextButton1 = new JButton();
+	    nextButton1.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton1.setBorderPainted(false);
+    	nextButton1.setFocusPainted(false);
+    	nextButton1.setContentAreaFilled(false);
+
 	    JButton nextButton2 = new JButton();
+	    nextButton2.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton2.setBorderPainted(false);
+    	nextButton2.setFocusPainted(false);
+    	nextButton2.setContentAreaFilled(false);
+
 	    JButton nextButton3 = new JButton();
+	    nextButton3.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton3.setBorderPainted(false);
+    	nextButton3.setFocusPainted(false);
+    	nextButton3.setContentAreaFilled(false);
+
 	    JButton nextButton4 = new JButton();
+	    nextButton4.setBorder(BorderFactory.createEmptyBorder());
+	    nextButton4.setBorderPainted(false);
+    	nextButton4.setFocusPainted(false);
+    	nextButton4.setContentAreaFilled(false);
+
 
 	    try {
-	    	// Should replace to this commented out line after development
-//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "next.png"));
-			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			nextButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton2.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton3.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			nextButton4.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -527,18 +637,35 @@ public class GUI implements Runnable {
 	    });
 
 	    JButton prevButton1 = new JButton();
+	    prevButton1.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton1.setBorderPainted(false);
+    	prevButton1.setFocusPainted(false);
+    	prevButton1.setContentAreaFilled(false);
+
 	    JButton prevButton2 = new JButton();
+	    prevButton2.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton2.setBorderPainted(false);
+    	prevButton2.setFocusPainted(false);
+    	prevButton2.setContentAreaFilled(false);
+
 	    JButton prevButton3 = new JButton();
+	    prevButton3.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton3.setBorderPainted(false);
+    	prevButton3.setFocusPainted(false);
+    	prevButton3.setContentAreaFilled(false);
+
 	    JButton prevButton4 = new JButton();
+	    prevButton4.setBorder(BorderFactory.createEmptyBorder());
+	    prevButton4.setBorderPainted(false);
+    	prevButton4.setFocusPainted(false);
+    	prevButton4.setContentAreaFilled(false);
 
 	    try {
-	    	// Should replace to this commented out line after development
-//			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "previous.png"));
-			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
-			prevButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton2.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton3.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+			prevButton4.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -612,7 +739,7 @@ public class GUI implements Runnable {
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        login.setSize(600,400);
+        login.setSize(711,400);
         login.setResizable(false);
         login.setLocationRelativeTo(null);
 
@@ -638,7 +765,7 @@ public class GUI implements Runnable {
 	    nameLabel.setForeground(Color.white);
 	   	nameLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
-	    JLabel serverLabel = new JLabel("Enter Server's IP");
+	    JLabel serverLabel = new JLabel("Enter Server's IP:");
 	    serverLabel.setForeground(Color.white);
 	    serverLabel.setFont(new Font("Serif", Font.BOLD, 14));
 
@@ -652,14 +779,53 @@ public class GUI implements Runnable {
         JTextField serverfield = new JTextField(20);
         JTextField portfield = new JTextField(20);
 
-        JButton startButton = new JButton("START!");
-        startButton.setBackground(new Color(238, 243, 39));
-        JButton helpButton = new JButton("HELP");
-        JButton aboutButton = new JButton("ABOUT");
+        JButton startButton = new JButton("PLAY");
+        startButton.setForeground(Color.WHITE);
+	    startButton.setBorder(BorderFactory.createEmptyBorder());
+	    startButton.setBorderPainted(false);
+    	startButton.setFocusPainted(false);
+    	startButton.setContentAreaFilled(false);
 
-        startButton.setPreferredSize(new Dimension(90, 30));
-        helpButton.setPreferredSize(new Dimension(90, 30));
-        aboutButton.setPreferredSize(new Dimension(90, 30));
+	    try {
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "rplay.png"));
+	    	startButton.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+
+
+        JButton helpButton = new JButton("HELP");
+        helpButton.setForeground(Color.WHITE);
+	    helpButton.setBorder(BorderFactory.createEmptyBorder());
+	    helpButton.setBorderPainted(false);
+    	helpButton.setFocusPainted(false);
+    	helpButton.setContentAreaFilled(false);
+
+	    try {
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "help.png"));
+	    	helpButton.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        JButton aboutButton = new JButton("ABOUT");
+      	aboutButton.setForeground(Color.WHITE);
+	    aboutButton.setBorder(BorderFactory.createEmptyBorder());
+	    aboutButton.setBorderPainted(false);
+    	aboutButton.setFocusPainted(false);
+    	aboutButton.setContentAreaFilled(false);
+
+	    try {
+	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "about.png"));
+	    	aboutButton.setIcon(new ImageIcon(img.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH)));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+        // startButton.setPreferredSize(new Dimension(90, 30));
+        // helpButton.setPreferredSize(new Dimension(90, 30));
+        // aboutButton.setPreferredSize(new Dimension(90, 30));
 
 	    GridBagConstraints c = new GridBagConstraints();
 
@@ -744,7 +910,7 @@ public class GUI implements Runnable {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Removes title bar; so the close (x) button is not seen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-        frame.setSize(600,400);
+        frame.setSize(711,400);
         frame.setResizable(false);
         frame.setUndecorated(true);
         frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);

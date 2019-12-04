@@ -1,8 +1,5 @@
-//
-// NOTE:
-//  -javac gui.java
-//  -java gui <username> <port no.>
-//
+//Main GUI File
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -44,7 +41,8 @@ public class GUI implements Runnable {
 	//==============================================================================
 //	private final String IMG_FOLDER_APP = "PNG-photos/";
 //	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
-	
+
+//window classes
 	public GUI(ViewListener listener) {
 		this.listener = listener;
 
@@ -54,7 +52,7 @@ public class GUI implements Runnable {
 		initLoginWindow();
 	}
 
-
+//About Window
 	private void initAboutWindow() {
 		about = new JFrame();
 		about.setUndecorated(true);
@@ -367,6 +365,7 @@ public class GUI implements Runnable {
 	}
 
 
+//Help Window
 	private void initHelpWindow() {
 		help = new JFrame();
 		help.setUndecorated(true);
@@ -608,8 +607,7 @@ public class GUI implements Runnable {
 	}
 
 
-
-	
+//Main Window
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -620,7 +618,7 @@ public class GUI implements Runnable {
 	    JPanel mainPanel = new JPanel(new GridBagLayout());
 	    //JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 	    JLabel credits = new JLabel("  ");
-	    // CHANGE COLOR HERE
+
 	    login.getContentPane().setBackground(new Color(53, 101, 77));
 	    mainPanel.setBackground(new Color(53, 101, 77));
       
@@ -646,7 +644,6 @@ public class GUI implements Runnable {
 	    JLabel portLabel = new JLabel("Enter Port:");
 	    portLabel.setForeground(Color.white);
 	    portLabel.setFont(new Font("Serif", Font.BOLD, 14));
-
 
 
 
@@ -738,7 +735,9 @@ public class GUI implements Runnable {
 
         login.setVisible(true);
 	}
-	
+
+
+//Game Window
 	private void initGameWindow() {
 		frame = new JFrame("1-2-3PASS! - CMSC 137 Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -980,6 +979,8 @@ public class GUI implements Runnable {
         });
 	}
 
+
+//Functions 
     public void pressEnter() {
       button1.setEnabled(false);
       button2.setEnabled(false);

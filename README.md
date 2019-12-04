@@ -33,7 +33,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 
 7. Once the timer is up, the chosen cards will be sent to the server for redistribution. The redistribution process works by giving the card of a client to the one next to the client in a clockwise motion
 
-8. Once the clients see their new set of cards, process F-G will repeat until one or more client/s has/have 4 equal cards. Those clients will receive a notification that they should quickly press “Enter”
+8. Once the clients see their new set of cards, process 6-7 will repeat until one or more client/s has/have 4 equal cards. Those clients will receive a notification that they should quickly press “Enter”
 
 9. Once a client presses “Enter”, the server will broadcast to the rest of the clients that they should press “Enter” quickly
 
@@ -59,8 +59,8 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 ## Designations
   
 #### Signals: <br />
-  +01 = Request Cards <br />
-  +02 = Send Card/s <br />
+  +SC = Send Cards <br />
+  +TM = Timer <br />
   
 Player ID: 01,02,03,.....,12,13 <br />
 
@@ -70,8 +70,8 @@ Player ID: 01,02,03,.....,12,13 <br />
   +Sample Card Code: AC (Ace of Clubs) <br />
 
 #### Code Pattern: <br />
-##### Sample code: 0204KC <br />
-+02 - Server Requests Cards <br />
+##### Sample code: SC04KCAC3C2S <br />
++SC - Server Sends Cards <br />
 +04 - Player ID <br />
-+KC - Card chosen is King of Clubs <br />
++KCAC3C2S - Cards <br />
 

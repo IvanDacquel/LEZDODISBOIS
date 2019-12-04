@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.Map;
 
 public class Server extends UDPComponent implements GameConstants{
 	private int gameState;
@@ -21,7 +22,7 @@ public class Server extends UDPComponent implements GameConstants{
 		super(port);
 		this.maxPlayers = maxPlayers;
 		this.players = new ArrayList<User>();
-
+    this.log = new HashMap<User, String>();
     this.run();
 	}
 
@@ -69,9 +70,45 @@ public class Server extends UDPComponent implements GameConstants{
 			for(int cardCount = 0; cardCount < 4; cardCount++) firstFour = firstFour + gameDeck.get(cardCount + (4 * i));
 			firstFour = "SC" + firstFour;
 			System.out.println(firstFour);
+      this.log.put(this.players.get(i), firstFour);
 			this.send(firstFour, this.players.get(i).getAddress(), this.players.get(i).getPort());
 		}
 	}
+
+  public void printPlayerStatuses(){
+    for(Map.Entry<User, String> p : this.log.entrySet()){
+      System.out.println("Player ID: " + p.getKey().getUserID() + " Hand: " + p.getValue());
+    }
+  }
+
+
+  public void sendCards() throws IOException{
+    User player;
+    String hand;
+
+    for(Map.Entry<User, String> entry : this.log.entrySet()){
+        player = entry.getKey();
+        hand = entry.getValue();
+        this.send(hand, player.getAddress(), player.getPort());
+    }
+  }
+
+  public void handleClientMessages(String received){
+    switch(received){
+      case "PA":
+        break;
+      case "EX":
+        break;
+      default:
+        break;
+    }
+  }
+
+  public void distributeUIDs() throws IOException{
+    for(User u : this.players){
+      this.send(Integer.toString(u.getUserID()), u.getAddress(), u.getPort());
+    }
+  }
 
 	public void run(){
 		InetAddress playerAddress;
@@ -90,11 +127,9 @@ public class Server extends UDPComponent implements GameConstants{
       }
 
       this.distributeCards();
+      this.printPlayerStatuses();
 
-      while(true){
-
-      }
-//			this.close();
+			this.close();
 		}catch(IOException e){
 			System.out.println("Cannot listen to " + this.socket.getPort());
 		}

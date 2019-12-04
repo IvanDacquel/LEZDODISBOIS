@@ -47,10 +47,10 @@ public class GUI implements Runnable {
 	public GUI(ViewListener listener) {
 		this.listener = listener;
 
-		initLoginWindow();
 		initGameWindow();
 		initHelpWindow();
 		initAboutWindow();
+		initLoginWindow();
 	}
 
 
@@ -175,7 +175,7 @@ public class GUI implements Runnable {
 
 	private void initHelpWindow() {
 		help = new JFrame();
-		help.setUndecorated(true);
+		//help.setUndecorated(true);
 	    help.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    help.setSize(600,400);
 	    help.setResizable(false);
@@ -183,13 +183,11 @@ public class GUI implements Runnable {
 	    help.getContentPane().setBackground(new Color(53, 101, 77));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
-	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    //JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 	    help.add(mainPanel, BorderLayout.CENTER);
-	    help.add(credits, BorderLayout.SOUTH);
+	    //help.add(credits, BorderLayout.SOUTH);
 	    
 		CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
-
-		//ImagePanel helpCard = new ImagePanel(new ImageIcon(getClass().getResource(IMG_FOLDER_APP + "resize.png")).getImage());
 
 	    JPanel helpCard1 = new JPanel(new GridBagLayout());
 	    JPanel helpCard2 = new JPanel(new GridBagLayout());
@@ -208,6 +206,10 @@ public class GUI implements Runnable {
 	    /*
 	    	Place content you want to add to page 1 here, inside contentArea1
 	    */
+
+	   	JLabel help1 = new JLabel();
+		help1.setIcon(new ImageIcon(IMG_FOLDER_APP + "help1.png"));
+		contentArea1.add(help1);
 	    
 	    JPanel contentArea2 = new JPanel();
 	    /*

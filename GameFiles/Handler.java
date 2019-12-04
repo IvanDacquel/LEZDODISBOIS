@@ -13,7 +13,7 @@ public class Handler implements Runnable{
   public void run(){
     try{
 			while(true){
-				System.out.println(this.receive());
+				System.out.println(this.server.receive());
 			}
 		}catch(IOException e){}
   }

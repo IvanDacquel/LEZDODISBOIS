@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import java.io.IOException;
 
 import javax.swing.border.LineBorder;
@@ -611,7 +612,6 @@ public class GUI implements Runnable {
 	
 	private void initLoginWindow() {
 		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
-		//login.setUndecorated(true);
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         login.setSize(600,400);
         login.setResizable(false);
@@ -627,8 +627,13 @@ public class GUI implements Runnable {
 	    login.add(mainPanel, BorderLayout.CENTER);
 	    login.add(credits, BorderLayout.SOUTH);
 	    
-	    // Change to image?
-	    JLabel tempTitle = new JLabel("1-2-3 PASS!");
+	    JLabel title = new JLabel();
+		try {
+			ImageIcon imgIco = new ImageIcon(ImageIO.read(new File(IMG_FOLDER_APP + "LOGO.png")).getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+			title.setIcon(imgIco);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 	    
 	    JLabel nameLabel = new JLabel("Enter Name:");
 	    JLabel serverLabel = new JLabel("Enter Server's IP");
@@ -653,39 +658,39 @@ public class GUI implements Runnable {
 	    c.gridheight = 2;
 	    c.gridwidth = 6;
 	    c.gridx = c.gridy = 0;
-	    mainPanel.add(tempTitle, c);
+	    mainPanel.add(title, c);
 	    
 	    c.gridheight = 1;
 	    c.gridwidth = 2;
 	    
-	    c.gridx = 2;
+	    c.gridx = 0;
 	    c.gridy = 5;
 	    mainPanel.add(startButton, c);
 	    
-	    c.gridy = 6;
+	    c.gridx = 2;
 	    mainPanel.add(helpButton, c);
 	    
-	    c.gridy = 7;
+	    c.gridx = 4;
 	    mainPanel.add(aboutButton, c);
-	    
+
 	    c.gridx = 1;
-	    c.gridy = 2;
+	    c.gridy = 1;
 	    mainPanel.add(nameLabel, c);
 	    
-	    c.gridy = 3;
+	    c.gridy = 2;
 	    mainPanel.add(serverLabel, c);
 	    
-	    c.gridy = 4;
+	    c.gridy = 3;
 	    mainPanel.add(portLabel, c);
-	    
+
 	    c.gridx = 3;
-	    c.gridy = 2;
+	    c.gridy = 1;
 	    mainPanel.add(namefield, c);
 	    
-	    c.gridy = 3;
+	    c.gridy = 2;
 	    mainPanel.add(serverfield, c);
 	    
-	    c.gridy = 4;
+	    c.gridy = 3;
 	    mainPanel.add(portfield, c);
         
         startButton.addActionListener(new ActionListener() {

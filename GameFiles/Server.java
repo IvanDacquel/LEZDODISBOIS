@@ -3,117 +3,125 @@ import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 
-public class Server implements UDPServiceable{
-  private DatagramSocket socket;
-  private DatagramPacket packet;
-  private int max_players;
-  private ArrayList<User> users;
-  private Boolean gameStart, gameOver;
+public class Server extends UDPComponent implements GameConstants{
+	private int gameState;
+	private int maxPlayers;
+	private ArrayList<User> players;
+	private Thread thread;
 
-  public Server(int port) throws IOException{
-    this.socket = new DatagramSocket(port);
-    this.max_players = 13;
-    this.users = new ArrayList<User>(13);
-    this.gameStart = this.gameOver = false;
-  }
+	/*
+	 * Constructs a server by binding a DatagramSocket to a specified
+	 * port. Run the server on a separate thread.
+	 */
+	public Server(int port, int maxPlayers) throws IOException{
+		super(port);
+		this.gameState = WAITING_FOR_PLAYERS;
+		this.maxPlayers = maxPlayers;
+		this.players = new ArrayList<User>();
+		this.run();
+	}
 
-  public Server(int port, int max_players) throws IOException{
-    this.socket = new DatagramSocket(port);
-    this.max_players = max_players;
-    this.users = new ArrayList<User>(this.max_players);
-    this.gameStart = this.gameOver = false;
-  }
+	/*
+	 * Broadcasts a given message to all of its connected players.
+	 */
+	public void broadcast(String message) throws IOException{
+		InetAddress receiver;
+		int port;
 
-  @Override
-  public int send(String message, InetAddress recepient, int port){
-    try{
-      byte buf[] = message.getBytes();
-      this.packet = new DatagramPacket(buf, buf.length, recepient, port);
-      this.socket.send(this.packet);
-      return UDPServiceable.SUCCESS;
-    }catch(IOException e){
-      return UDPServiceable.FAIL;
-    }
-  }
+		for(User p : this.players){
+			receiver = p.getAddress();
+			port = p.getPort();
 
-  @Override
-  public int receive(){
-    try{
-      byte buf[] = new byte[256];
-      this.packet = new DatagramPacket(buf, buf.length);
-      this.socket.receive(this.packet);
-      return UDPServiceable.SUCCESS;
-    }catch(IOException e){
-      return UDPServiceable.FAIL;
-    }
-  }
+			this.send(message, receiver, port);
+		}
+	}
 
-  @Override
-  public int synchronize(InetAddress recepient, int port){
-    try{
-      byte buf[] = new byte[256];
-      this.packet = new DatagramPacket(buf, buf.length, recepient, port);
-      this.socket.send(this.packet);
-      return UDPServiceable.SUCCESS;
-    }catch(IOException e){
-      return UDPServiceable.FAIL;
-    }
-  }
+	/*
+	 * Game state -> Waiting for players:
+	 *     Actively listens to client connections and stores their infor-
+	 *     mation on an ArrayList.
+	 *
+	 * Game state -> Game start:
+	 *
+	 * Game state -> Game over:
+	 *     The thread ends when the game is over. The winner will be broadcast-
+	 *     ed, and the server's socket will be closed.
+	 */
 
-  public String getMessage(){
-    return new String(this.packet.getData(), 0, this.packet.getLength());
-  }
+	public void distributeCards() throws IOException{
+		int deckCount = 0;
+		ArrayList<String> gameDeck = new ArrayList<String>(), mainSetup;
 
-  public Boolean hasGameStarted(){
-    return this.gameStart;
-  }
+		while(deckCount < (this.players.size() * 4)){
+			gameDeck.add(this.deck[deckCount]);
+			deckCount++;
+		}
 
-  public Boolean hasGameEnded(){
-    return this.gameOver;
-  }
+		Collections.shuffle(gameDeck);
+		mainSetup = new ArrayList<String>();
 
-  public void close() throws IOException{
-    this.socket.close();
-  }
+		for(int i = 0; i < this.players.size(); i++){
+			String firstFour = "";
+			for(int cardCount = 0; cardCount < 4; cardCount++) firstFour = firstFour + gameDeck.get(cardCount + (4 * i));
+			firstFour = "SC" + firstFour;
+			System.out.println(firstFour);
+			this.send(firstFour, this.players.get(i).getAddress(), this.players.get(i).getPort());
+		}
+	}
 
-  public void run() throws IOException{
-    String received = null;
-    try{
-      while(!this.gameOver){
-        while(!this.gameStart){
-          if(this.receive() == UDPServiceable.SUCCESS){
-            System.out.println("Successfully connected to " + this.packet.getAddress());
-            received = this.getMessage();
-            InetAddress recepient = packet.getAddress();
-            int recepient_port = packet.getPort();
-            User user = new User(received, recepient, recepient_port);
-            this.users.add(user);
-            new Thread(new Handler(this, user)).start();
-          } else {
-            break;
-          }
-        }
+	public void run(){
+		InetAddress playerAddress;
+		int port;
+		String nickname, signal;
+
+		try{
+			while(this.players.size() != this.maxPlayers){
+        nickname = this.receive();
+        playerAddress = this.getAddress();
+        port = this.getPort();
+
+        User player = new User(nickname, playerAddress, port);
+        this.players.add(player);
       }
-      this.close();
-    }catch(IOException e){
-      System.out.println("Connection failed!");
-    }
-  }
 
-  public static void main(String[] args) throws IOException{
-    try{
-        int maxPlayers = Integer.parseInt(args[1]);
-        if((maxPlayers >= 3) && (maxPlayers <= 13)){
-          Server server = new Server(Integer.parseInt(args[0]));
-          server.run();
-        }else System.out.println("Number of players must be from 3 to 13!");
-    }catch(Exception e){
-      if (e instanceof IOException){
-        System.out.println("Server start-up failed");
-      }else if(e instanceof ArrayIndexOutOfBoundsException){
-        System.out.println("Usage: java Server <port> <max_players>");
-      }
-    }
-  }
+      this.distributeCards();
+			this.close();
+		}catch(IOException e){
+			System.out.println("Cannot listen to " + this.socket.getPort());
+		}
+	}
+
+	/*
+	 * Changes the game state depending on the game's current state
+	 * and its variables.
+	 */
+	private void changeGameState(){
+		switch(this.gameState){
+			case WAITING_FOR_PLAYERS:
+				if(this.players.size() == this.maxPlayers){
+					this.gameState = GAME_START;
+				}
+				break;
+			case GAME_START:
+				this.gameState = GAME_OVER;
+				break;
+			default: break;
+		}
+	}
+
+	public int getGameState(){
+		return this.gameState;
+	}
+
+	public static void main(String[] args){
+		try{
+			Server serv = new Server(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+		}catch(IOException e){
+			System.out.println("Error creating server: Cannot bind to port " + args[1]);
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Usage: java Server <port> <max_players>");
+		}
+	}
 }

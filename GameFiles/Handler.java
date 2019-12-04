@@ -1,35 +1,20 @@
 import java.io.IOException;
 
-public class Handler implements Runnable{
-  private Server server;
-  private User user;
+public class Handler implements Runnable, GameConstants{
+	private Server server;
+	private User player;
 
-  public Handler(Server server, User user){
-    this.server = server;
-    this.user = user;
-  }
+	public Handler(Server server, User player){
+		this.server = server;
+		this.player = player;
+	}
 
-  @Override
-  public void run(){
-    Boolean gameStart, gameEnd;
-
-    gameStart = this.server.hasGameStarted();
-    gameEnd = this.server.hasGameEnded();
-
-    String signal = "SC2CAH2S5D";
-    this.server.send(signal, this.user.getIPAddress(), this.user.getPort());
-
-    while(!signal.equals("LV")){
-      this.server.receive();
-      signal = this.server.getMessage();
-      if(signal.equals("LV")) this.server.send("Permission accepted", this.user.getIPAddress(), this.user.getPort());
-      else System.out.println(signal);
-    }
-
-    try{
-      this.server.close();
-    }catch(IOException e){
-      e.printStackTrace();
-    }
-  }
+	@Override
+	public void run(){
+		try{
+			while(true){
+				System.out.println(this.server.receive());
+			}
+		}catch(IOException e){}
+	}
 }

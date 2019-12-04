@@ -27,7 +27,10 @@ public class User{
     User.users--;
   }
 
-  public InetAddress getIPAddress(){
+  public int getUserID(){
+    return this.userid;
+  }
+  public InetAddress getAddress(){
     return this.ipAddress;
   }
 

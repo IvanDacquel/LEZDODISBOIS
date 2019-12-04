@@ -107,7 +107,7 @@ public class ClientController implements ViewListener, HandlerListener {
 	@Override
 	public void pickCard(int index) {
 		//	Generates the code for "Card Passing": player id, PA, card (eg. 01PAAH for player 2 passing Ace of Hearts)
-		String code = String.format("%02d", playerID) + "PA" + cards.get(index);
+		String code =  "PA" + String.format("%02d", playerID) + cards.get(index);
 
 		System.out.println(code);
 		//	Sends the code the to the server

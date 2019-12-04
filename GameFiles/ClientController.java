@@ -148,5 +148,6 @@ public class ClientController implements ViewListener, HandlerListener {
 	@Override
 	public void setUserId(int id) {
 		playerID = id;
+		mainWindow.updateUserId(String.format("%02d", id));
 	}
 }

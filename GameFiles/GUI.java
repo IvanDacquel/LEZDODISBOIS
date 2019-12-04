@@ -33,11 +33,12 @@ public class GUI implements Runnable {
 	private JTextField turn;
 	private JTextField score;
 	private JTextField portId;
+	private JTextField pId;
 
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-	//private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-	//private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+//	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+//	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
 	private final String IMG_FOLDER_APP = "PNG-photos/";
 	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
@@ -805,7 +806,7 @@ public class GUI implements Runnable {
         exit.setBackground(Color.white);
         exit.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Text for Player ID and designs
-        JTextField pId = new JTextField();
+        pId = new JTextField();
         pId.setText("Player ID: XX");
         pId.setEditable(false);
         pId.setForeground(Color.white);
@@ -1022,7 +1023,15 @@ public class GUI implements Runnable {
 	}
 
 	public void returnToLogin() {
+		button1.setEnabled(false);
+	    button2.setEnabled(false);
+	    button3.setEnabled(false);
+	    button4.setEnabled(false);
 		frame.setVisible(false);
 		login.setVisible(true);
+	}
+
+	public void updateUserId(String id) {
+		pId.setText("Player ID: " + id);
 	}
 }

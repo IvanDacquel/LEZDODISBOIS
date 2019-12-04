@@ -94,7 +94,7 @@ public class Server extends UDPComponent implements GameConstants{
       while(true){
 
       }
-			this.close();
+//			this.close();
 		}catch(IOException e){
 			System.out.println("Cannot listen to " + this.socket.getPort());
 		}

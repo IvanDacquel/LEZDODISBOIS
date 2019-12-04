@@ -39,11 +39,11 @@ public class GUI implements Runnable {
 	
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	//private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+	//private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-//	private final String IMG_FOLDER_APP = "PNG-photos/";
-//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 	
 	public GUI(ViewListener listener) {
 		this.listener = listener;
@@ -618,8 +618,8 @@ public class GUI implements Runnable {
         login.setLocationRelativeTo(null);
 
 	    JPanel mainPanel = new JPanel(new GridBagLayout());
-	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
-
+	    //JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
+	    JLabel credits = new JLabel("  ");
 	    // CHANGE COLOR HERE
 	    login.getContentPane().setBackground(new Color(53, 101, 77));
 	    mainPanel.setBackground(new Color(53, 101, 77));
@@ -636,14 +636,26 @@ public class GUI implements Runnable {
 		}
 	    
 	    JLabel nameLabel = new JLabel("Enter Name:");
+	    nameLabel.setForeground(Color.white);
+	   	nameLabel.setFont(new Font("Serif", Font.BOLD, 14));
+
 	    JLabel serverLabel = new JLabel("Enter Server's IP");
+	    serverLabel.setForeground(Color.white);
+	    serverLabel.setFont(new Font("Serif", Font.BOLD, 14));
+
 	    JLabel portLabel = new JLabel("Enter Port:");
+	    portLabel.setForeground(Color.white);
+	    portLabel.setFont(new Font("Serif", Font.BOLD, 14));
+
+
+
 
         JTextField namefield = new JTextField(20);
         JTextField serverfield = new JTextField(20);
         JTextField portfield = new JTextField(20);
         
         JButton startButton = new JButton("START!");
+        startButton.setBackground(new Color(238, 243, 39));
         JButton helpButton = new JButton("HELP");
         JButton aboutButton = new JButton("ABOUT");
 
@@ -665,10 +677,10 @@ public class GUI implements Runnable {
 	    
 	    c.gridx = 0;
 	    c.gridy = 5;
-	    mainPanel.add(startButton, c);
+	    mainPanel.add(helpButton, c);
 	    
 	    c.gridx = 2;
-	    mainPanel.add(helpButton, c);
+	    mainPanel.add(startButton, c);
 	    
 	    c.gridx = 4;
 	    mainPanel.add(aboutButton, c);

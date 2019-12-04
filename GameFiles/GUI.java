@@ -64,9 +64,7 @@ public class GUI implements Runnable {
 	    about.getContentPane().setBackground(new Color(53, 101, 77));
 	    
 	    JPanel mainPanel = new JPanel(new CardLayout());
-	    JLabel credits = new JLabel("Dacquel, Dollentes, Figueroa, Salcedo, Villaro | 2019");
 	    about.add(mainPanel, BorderLayout.CENTER);
-	    about.add(credits, BorderLayout.SOUTH);
 	    
 		CardLayout cardLayout = (CardLayout) mainPanel.getLayout();
 
@@ -76,7 +74,7 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help1.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about1.png").getImage(), 0, 0, 600, 400, null);
 	    	}
 	    };
 	    
@@ -86,17 +84,85 @@ public class GUI implements Runnable {
 			@Override
 	    	protected void paintComponent(Graphics g) {
 	    		super.paintComponent(g);
-	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "help1.png").getImage(), 0, 0, 600, 400, null);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about2.png").getImage(), 0, 0, 600, 400, null);
+	    	}
+	    };
+	    
+	    JPanel aboutCard3 = new JPanel(new GridBagLayout()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	    	protected void paintComponent(Graphics g) {
+	    		super.paintComponent(g);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about3.png").getImage(), 0, 0, 600, 400, null);
+	    	}
+	    };
+	    
+	    JPanel aboutCard4 = new JPanel(new GridBagLayout()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	    	protected void paintComponent(Graphics g) {
+	    		super.paintComponent(g);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about4.png").getImage(), 0, 0, 600, 400, null);
+	    	}
+	    };
+	    
+	    JPanel aboutCard5 = new JPanel(new GridBagLayout()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	    	protected void paintComponent(Graphics g) {
+	    		super.paintComponent(g);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about5.png").getImage(), 0, 0, 600, 400, null);
+	    	}
+	    };
+	    
+	    JPanel aboutCard6 = new JPanel(new GridBagLayout()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	    	protected void paintComponent(Graphics g) {
+	    		super.paintComponent(g);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about6.png").getImage(), 0, 0, 600, 400, null);
+	    	}
+	    };
+	    
+	    JPanel aboutCard7 = new JPanel(new GridBagLayout()) {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+	    	protected void paintComponent(Graphics g) {
+	    		super.paintComponent(g);
+	    			g.drawImage(new ImageIcon(IMG_FOLDER_APP + "about7.png").getImage(), 0, 0, 600, 400, null);
 	    	}
 	    };
 	    
 	    mainPanel.add(aboutCard1, "Page 1");
 	    mainPanel.add(aboutCard2, "Page 2");
+	    mainPanel.add(aboutCard3, "Page 3");
+	    mainPanel.add(aboutCard4, "Page 4");
+	    mainPanel.add(aboutCard5, "Page 5");
+	    mainPanel.add(aboutCard6, "Page 6");
+	    mainPanel.add(aboutCard7, "Page 7");
 	    
 	    GridBagConstraints c = new GridBagConstraints();
 
 	    JPanel padding1 = new JPanel();
 	    JPanel padding2 = new JPanel();
+	    JPanel padding3 = new JPanel();
+	    JPanel padding4 = new JPanel();
+	    JPanel padding5 = new JPanel();
+	    JPanel padding6 = new JPanel();
+	    JPanel padding7 = new JPanel();
+
+	    padding1.setOpaque(false);
+	    padding2.setOpaque(false);
+	    padding3.setOpaque(false);
+	    padding4.setOpaque(false);
+	    padding5.setOpaque(false);
+	    padding6.setOpaque(false);
+	    padding7.setOpaque(false);
 	    
 	    JButton returnButton1 = new JButton("RETURN");
 	    returnButton1.addActionListener(new ActionListener() {
@@ -119,16 +185,28 @@ public class GUI implements Runnable {
 			}
 	    	
 	    });
-	    
+
 	    JButton nextButton1 = new JButton();
+	    JButton nextButton2 = new JButton();
+	    JButton nextButton3 = new JButton();
+	    JButton nextButton4 = new JButton();
+	    JButton nextButton5 = new JButton();
+	    JButton nextButton6 = new JButton();
+	    
 	    try {
 	    	// Should replace to this commented out line after development
 //			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "next.png"));
 			nextButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton5.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			nextButton6.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	    
 	    nextButton1.addActionListener(new ActionListener() {
 
 			@Override
@@ -137,17 +215,69 @@ public class GUI implements Runnable {
 			}
 	    	
 	    });
+	    
+	    nextButton2.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 3");
+			}
+	    	
+	    });
+	    
+	    nextButton3.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 4");
+			}
+	    	
+	    });
+	    
+	    nextButton4.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 5");
+			}
+	    	
+	    });
+	    
+	    nextButton5.addActionListener(new ActionListener() {
 
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 6");
+			}
+	    	
+	    });
+	    
+	    nextButton6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 7");
+			}
+	    	
+	    });
 
 	   	JButton prevButton1 = new JButton();
+	   	JButton prevButton2 = new JButton();
+	   	JButton prevButton3 = new JButton();
+	   	JButton prevButton4 = new JButton();
+	   	JButton prevButton5 = new JButton();
+	   	JButton prevButton6 = new JButton();
+	   	
 	    try {
 	    	// Should replace to this commented out line after development
 //			Image img = ImageIO.read(getClass().getResource(IMG_FOLDER_APP + "next.png"));
 	    	Image img = ImageIO.read(new java.io.FileInputStream(IMG_FOLDER_APP + "previous.png"));
 			prevButton1.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton2.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton3.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton4.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton5.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+			prevButton6.setIcon(new ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -160,6 +290,46 @@ public class GUI implements Runnable {
 			}
 	    });
 
+	    prevButton2.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 2");
+			}
+	    });
+
+	    prevButton3.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 3");
+			}
+	    });
+
+	    prevButton4.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 4");
+			}
+	    });
+
+	    prevButton5.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 5");
+			}
+	    });
+
+	    prevButton6.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				cardLayout.show(mainPanel, "Page 6");
+			}
+	    });
+
 
 	    c.anchor = GridBagConstraints.SOUTH;
 	    c.insets = new Insets(15, 15, 15, 15);
@@ -169,15 +339,30 @@ public class GUI implements Runnable {
 	    c.gridx = c.gridy = 0;
 	    aboutCard1.add(padding1, c);
 	    aboutCard2.add(padding2, c);
+	    aboutCard3.add(padding3, c);
+	    aboutCard4.add(padding4, c);
+	    aboutCard5.add(padding5, c);
+	    aboutCard6.add(padding6, c);
+	    aboutCard7.add(padding7, c);
 	    
 	    c.gridheight = c.gridwidth = 1;
 	    c.gridy = 6;
 	    aboutCard1.add(returnButton1, c);
 	    aboutCard2.add(prevButton1, c);
+	    aboutCard3.add(prevButton2, c);
+	    aboutCard4.add(prevButton3, c);
+	    aboutCard5.add(prevButton4, c);
+	    aboutCard6.add(prevButton5, c);
+	    aboutCard7.add(prevButton6, c);
 	    
 	    c.gridx = 4;
 	    aboutCard1.add(nextButton1, c);
-	    aboutCard2.add(returnButton2, c);
+	    aboutCard2.add(nextButton2, c);
+	    aboutCard3.add(nextButton3, c);
+	    aboutCard4.add(nextButton4, c);
+	    aboutCard5.add(nextButton5, c);
+	    aboutCard6.add(nextButton6, c);
+	    aboutCard7.add(returnButton2, c);
 	}
 
 

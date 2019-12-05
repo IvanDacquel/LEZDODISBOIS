@@ -17,6 +17,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	private HashMap<User, String> log;
 	private HashMap<User, String> passedCards;
 	private int tracker;
+	private int endgame = 0;
 
 	/*
 	 * Constructs a server by binding a DatagramSocket to a specified
@@ -79,7 +80,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			this.passedCards.put(entry.getKey(), new String());
 		}
 	}
-	
+
 	/*
 	 * Prints information of all the players and their current cards.
 	 */
@@ -88,7 +89,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			System.out.println("Player ID: " + p.getKey().getUserID() + " Hand: " + p.getValue());
 		}
 	}
-	
+
 	/*
 	 * Prints the messages of all the players sent to the server in the
 	 * current turn.
@@ -104,7 +105,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			System.out.println("Player ID: " + p.getKey().getUserID() + " Passed: " + p.getValue());
 		}
 	}
-	
+
 	/*
 	 * Sends to the players their respective hands.
 	 */
@@ -118,18 +119,18 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			this.send(hand, player.getAddress(), player.getPort());
 		}
 	}
-  
+
 	/*
 	 * Updates the log with new messages from the clients.
 	 */
 	public synchronized void updateLog(User player, String signal){
 		this.log.replace(player, signal);
 	}
-	
+
 	public synchronized void updatePassedCards(User player, String card){
 		this.passedCards.replace(player, card);
 	}
-	
+
 	/*
 	 * Checks if the player has four cards with the same numbered card
 	 * of all suits.
@@ -138,7 +139,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 		if((hand.charAt(0) == hand.charAt(2)) && (hand.charAt(0) == hand.charAt(4)) && (hand.charAt(0)) == hand.charAt(6)){
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -148,7 +149,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	public boolean hasWon(User player, String hand){
 		return this.isFourOfAKind(hand);
 	}
-  
+
 	/*
 	 * Returns the user instance of the one who got the four-of-a-kind.
 	 */
@@ -156,18 +157,18 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 		for(Map.Entry<User, String> entry : this.hands.entrySet()){
 			if(this.hasWon(entry.getKey(), entry.getValue())) return entry.getKey();
 		}
-	
+
 		return null;
 	}
-  
+
 	public boolean foundFourOfAKind(){
 		for(Map.Entry<User, String> entry : this.hands.entrySet()){
 			if(this.hasWon(entry.getKey(), entry.getValue())) return true;
 		}
-		
+
 		return false;
 	}
-  
+
 	/*
 	 * Distributes the respective User ID's of all clients.
 	 */
@@ -182,14 +183,14 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 
 	private ArrayList<String> tokenize(String hand){
 		ArrayList<String> tokens = new ArrayList<String>();
-		
+
 		for(int i = 0; i < hand.length(); i += 2){
 			tokens.add(hand.substring(i, i + 2));
 		}
-		
+
 		return tokens;
 	}
-	
+
 	/*
 	 * Exchanges cards in a round robin fashion.
 	 * Fetch the cards, then tokenize them into substrings of length 2.
@@ -202,42 +203,42 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 		User curr;
 		String currHand, newHand, exc;
 		ArrayList<String> tokensUser, tokensRec;
-		
-		
+
+
 		for(Map.Entry<User, String> entry : this.hands.entrySet()){
 			newHand = new String();
 			u_id = entry.getKey().getUserID();
 			curr = entry.getKey();
 			exc = this.passedCards.get(curr);
-			
+
 			if(entry.getKey().getUserID() != this.maxPlayers){
 				recepient = u_id + 1;
 			}else recepient = 1;
-			
+
 			User p = this.findPlayer(recepient);
 			tokensRec = this.tokenize(this.hands.get(p));
-			
+
 			index = tokensRec.indexOf(this.passedCards.get(p));
 			tokensRec.set(index, exc);
-			
+
 			for(String token : tokensRec){
 				newHand = newHand + token;
 			}
 
 			this.hands.replace(p, newHand);
 		}
-		
+
 		this.printPlayerStatuses();
 	}
-	
+
 	private User findPlayer(int userID){
 		for(User u : this.players){
 			if(u.getUserID() == userID) return u;
 		}
 		return null;
 	}
-	
-	public synchronized void handleReceived(String message){
+
+	public synchronized void handleReceived(String message) throws IOException{
 		switch(message.substring(0,2)){
 			case "PA":
 				int userid = Integer.parseInt(message.substring(2,4));
@@ -247,11 +248,20 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			case "EX":
 				this.setGameState(ERROR);
 				break;
+			case "EN":
+				this.endgame += 1;
+				if(this.endgame < this.maxPlayers){
+					this.send("WI", this.address, this.port);
+				}
+				else{
+					this.send("LO", this.address, this.port);
+				}
+				break;
 			default:
 				break;
 		}
 	}
-	
+
 	/*
 	 *
 	 */
@@ -261,7 +271,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 		int port;
 		String nickname, signal;
 		User winner;
-	
+
 		try{
 			while(this.players.size() < this.maxPlayers){
 				nickname = this.receive();
@@ -275,28 +285,28 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			for(User u : this.players){
 				new Thread(new Handler(this, u)).start();
 			}
-			
+
 			this.distributeUIDs();
 			this.distributeCards();
 			this.initPassedCards();
-			
-			boolean foundFOAK = false; 
-			
+
+			boolean foundFOAK = false;
+
 			while(!foundFOAK && this.gameState != ERROR){
 				this.tracker = 0;
-				
+
 				while(this.tracker < this.maxPlayers){
-					
+					System.out.println(this.tracker);
 				}
-				
+
 				if(this.gameState == ERROR) break;
-				
+
 				this.printPlayerPasses();
 				this.exchangeCards();
 				this.sendCards();
 				foundFOAK = this.foundFourOfAKind();
 			}
-			
+
 			if(this.gameState == ERROR){
 				this.broadcast("RL");
 				this.players.clear();
@@ -305,10 +315,10 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 				this.passedCards.clear();
 				this.close();
 			}
-			
+
 			this.broadcast("WN");
-			
-			int foakCt = 0;
+			//this.tracker = 0;
+
 			ArrayList<User> winners = new ArrayList<User>();
 			for(Map.Entry<User, String> entry : this.hands.entrySet()){
 				if(this.isFourOfAKind(entry.getValue())){
@@ -330,7 +340,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	public synchronized void updateTracker(){
 		this.tracker++;
 	}
-	
+
 	/*
 	 * Changes the game state depending on the game's current state
 	 * and its variables.
@@ -348,7 +358,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			default: break;
 		}
 	}
-	
+
 	private synchronized void setGameState(int state){
 		this.gameState = state;
 	}

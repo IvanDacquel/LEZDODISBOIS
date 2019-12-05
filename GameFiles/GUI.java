@@ -39,11 +39,11 @@ public class GUI implements Runnable {
 
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+//	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+//	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-//	private final String IMG_FOLDER_APP = "PNG-photos/";
-//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 
 //window classes
 	public GUI(ViewListener listener) {

@@ -5,6 +5,7 @@ import java.net.DatagramSocket;
 public class ClientSignalHandler implements Runnable {
 	private DatagramSocket socket;
 	private String message;
+	private boolean gameOver;
 
 	private HandlerListener listener;
 
@@ -12,6 +13,7 @@ public class ClientSignalHandler implements Runnable {
 		this.socket = socket;
 		//	listener == ClientController
 		this.listener = listener;
+		gameOver = false;
 	}
 
 	@Override
@@ -22,7 +24,7 @@ public class ClientSignalHandler implements Runnable {
 		DatagramPacket packet = new DatagramPacket(buf, buf.length);
 
 	    try {
-			while(true){
+			while(!gameOver){
 				//	Waits for the server to send a reply
 				socket.receive(packet);
 				//	Stores the received message in "message"
@@ -51,6 +53,7 @@ public class ClientSignalHandler implements Runnable {
 					case "WI":
 					case "LO":
 						listener.showPopup(message.substring(0, 2));
+						gameOver = true;
 						break;
 					default:
 						break;

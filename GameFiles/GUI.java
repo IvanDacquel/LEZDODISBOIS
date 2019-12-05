@@ -37,13 +37,8 @@ public class GUI implements Runnable {
 	private JTextField portId;
 	private JTextField pId;
 
-	//Please don't replace, just uncomment the other one
-	//===============================CHANGE LATER===================================
-	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
-	//==============================================================================
-//	private final String IMG_FOLDER_APP = "PNG-photos/";
-//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 
 //window classes
 	public GUI(ViewListener listener) {
@@ -1002,10 +997,12 @@ public class GUI implements Runnable {
         panel2.setBackground(new Color(53, 101, 77));
         // Reset button; to revert unlickable buttons
         JButton reset = new JButton("RESET TEST");//supposed place of PAUSE
+        reset.setEnabled(false);
         reset.setBackground(Color.white);
         reset.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Currently a test button for win scenario
         JButton help = new JButton("WIN TEST");//supposed place of HELP
+        help.setEnabled(false);
         help.setBackground(Color.white);
         help.setBorder(new LineBorder(new Color(53, 101, 77),1));
         // Working exit button

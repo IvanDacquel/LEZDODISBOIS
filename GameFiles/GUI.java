@@ -39,11 +39,11 @@ public class GUI implements Runnable {
 
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-//	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-//	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-	private final String IMG_FOLDER_APP = "PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
+//	private final String IMG_FOLDER_APP = "PNG-photos/";
+//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 
 //window classes
 	public GUI(ViewListener listener) {
@@ -60,7 +60,7 @@ public class GUI implements Runnable {
 	//Lose window pop up
 	private void initLoseWindow(){
 		lost = new JFrame();
-		lost.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lost.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		lost.setSize(355,200);
 		lost.setResizable(false);
 		lost.setLocationRelativeTo(null);
@@ -78,7 +78,7 @@ public class GUI implements Runnable {
 	//Win window pop up
 	private void initWinWindow(){
 		win = new JFrame();
-	    win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    win.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	    win.setSize(355,200);
 	    win.setResizable(false);
 	    win.setLocationRelativeTo(null);
@@ -1182,7 +1182,7 @@ public class GUI implements Runnable {
             public void actionPerformed(ActionEvent e) {
               // Game stops cuz someone left; Print placeholder atm
               System.out.println("WARNING: "+ listener.getPlayerName() +" has left the game!");
-              listener.exit(false);
+              listener.exit(true);
             }
         });
 	}
@@ -1243,6 +1243,7 @@ public class GUI implements Runnable {
 	}
 
 	public void showPopup(String wl) {
+        listener.exit(false);
 		(wl.equals("WI")? win : lost).setVisible(true);
 	}
 }

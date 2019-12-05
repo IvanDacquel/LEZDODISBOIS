@@ -48,7 +48,7 @@ public class ClientSignalHandler implements Runnable {
 						listener.pressEnter();
 						break;
 					case "RL":
-						listener.exit(true);
+						listener.exit(false);
 						break;
 					case "WI":
 					case "LO":

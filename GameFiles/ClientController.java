@@ -132,9 +132,9 @@ public class ClientController implements ViewListener, HandlerListener {
 
 	//	Called when the player has pressed the EXIT button
 	@Override
-	public void exit(boolean fromServer) {
+	public void exit(boolean sendToServer) {
 		//	Generates the code for "Exit": EX, player id (eg. EX00 for player 1 has left the game)
-		if(!fromServer) {
+		if(sendToServer) {
 			sendMessage("EX" + String.format("%02d", playerID));
 		}
 		//	Resets the cards at hand to blanks

@@ -7,4 +7,8 @@ public interface HandlerListener {
 
 	void setUserId(int id);
 
+	void showPopup(String substring);
+
+	void exit(boolean fromServer);
+
 }

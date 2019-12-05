@@ -1182,7 +1182,7 @@ public class GUI implements Runnable {
             public void actionPerformed(ActionEvent e) {
               // Game stops cuz someone left; Print placeholder atm
               System.out.println("WARNING: "+ listener.getPlayerName() +" has left the game!");
-              listener.returnToLogIn();
+              listener.exit(false);
             }
         });
 	}

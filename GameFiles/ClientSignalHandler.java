@@ -6,18 +6,14 @@ public class ClientSignalHandler implements Runnable {
 	private DatagramSocket socket;
 	private String message;
 
-	private ClientController listener;
+	private HandlerListener listener;
 
-	public ClientSignalHandler(DatagramSocket socket, ClientController listener) {
+	public ClientSignalHandler(DatagramSocket socket, HandlerListener listener) {
 		this.socket = socket;
 		//	listener == ClientController
 		this.listener = listener;
 	}
 
-	/*
-	 * Change this so that the client controller would have only one Thread that reads
-	 * server messages continuously.
-	 */
 	@Override
 	public void run() {
 		message = new String();
@@ -50,7 +46,7 @@ public class ClientSignalHandler implements Runnable {
 						listener.pressEnter();
 						break;
 					case "RL":
-						listener.returnToLogIn();
+						listener.exit(true);
 						break;
 					case "WI":
 					case "LO":

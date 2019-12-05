@@ -68,9 +68,6 @@ public class ClientController implements ViewListener, HandlerListener {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		//	Creates a thread to handle to reply from the server (ClientSignalHandler.java)
-		new Thread(new ClientSignalHandler(socket, this)).start();
 	}
 
 	//	Called after pressing the START! button from the login window
@@ -85,6 +82,8 @@ public class ClientController implements ViewListener, HandlerListener {
 		try {
 			host = InetAddress.getByName(serverAddress);
 			socket = new DatagramSocket();
+			
+			new Thread(new ClientSignalHandler(socket, this)).start();
 			
 			//	Sends the player's name to the server
 			sendMessage(playerName);
@@ -133,9 +132,11 @@ public class ClientController implements ViewListener, HandlerListener {
 
 	//	Called when the player has pressed the EXIT button
 	@Override
-	public void returnToLogIn() {
+	public void exit(boolean fromServer) {
 		//	Generates the code for "Exit": EX, player id (eg. EX00 for player 1 has left the game)
-		sendMessage("EX" + String.format("%02d", playerID));
+		if(!fromServer) {
+			sendMessage("EX" + String.format("%02d", playerID));
+		}
 		//	Resets the cards at hand to blanks
 		setCards("BJ", "BJ", "BJ", "BJ");
 		//	Creates a new thread for the UI

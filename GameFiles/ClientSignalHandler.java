@@ -52,6 +52,10 @@ public class ClientSignalHandler implements Runnable {
 					case "RL":
 						listener.returnToLogIn();
 						break;
+					case "WI":
+					case "LO":
+						listener.showPopup(message.substring(0, 2));
+						break;
 					default:
 						break;
 				}

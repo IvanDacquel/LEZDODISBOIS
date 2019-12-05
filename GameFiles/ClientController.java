@@ -129,7 +129,6 @@ public class ClientController implements ViewListener, HandlerListener {
 	public void pressEnter() {
 		//	Tells the UI to activate the ENTER button
 		mainWindow.pressEnter();
-		sendMessage("EN");
 	}
 
 	//	Called when the player has pressed the EXIT button
@@ -150,5 +149,15 @@ public class ClientController implements ViewListener, HandlerListener {
 	public void setUserId(int id) {
 		playerID = id;
 		mainWindow.updateUserId(String.format("%02d", id));
+	}
+
+	// Called when player has pressed ENTER
+	@Override
+	public void pressedEnter() {
+		sendMessage("EN" + String.format("%02d", playerID));
+	}
+
+	public void showPopup(String wl) {
+		mainWindow.showPopup(wl);
 	}
 }

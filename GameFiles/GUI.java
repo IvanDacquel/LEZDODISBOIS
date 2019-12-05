@@ -16,6 +16,8 @@ public class GUI implements Runnable {
 	private JFrame frame;
 	private JFrame help;
 	private JFrame about;
+	private JFrame win;
+	private JFrame lost;
 
 	private JPanel panel;
 	private JPanel panel2;
@@ -37,20 +39,59 @@ public class GUI implements Runnable {
 
 	//Please don't replace, just uncomment the other one
 	//===============================CHANGE LATER===================================
-//	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
-//	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
+	private final String IMG_FOLDER_APP = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-photos/";
+	private final String IMG_FOLDER_CARDS = "C:/Users/Jeran/Desktop/LEZDODISBOIS/GameFiles/PNG-cards-1.3/";
 	//==============================================================================
-	private final String IMG_FOLDER_APP = "PNG-photos/";
-	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
+//	private final String IMG_FOLDER_APP = "PNG-photos/";
+//	private final String IMG_FOLDER_CARDS = "PNG-cards-1.3/";
 
 //window classes
 	public GUI(ViewListener listener) {
 		this.listener = listener;
 
+		initLoseWindow();
+		initWinWindow();
 		initGameWindow();
 		initHelpWindow();
 		initAboutWindow();
 		initLoginWindow();
+	}
+	
+	//Lose window pop up
+	private void initLoseWindow(){
+		lost = new JFrame();
+		lost.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		lost.setSize(355,200);
+		lost.setResizable(false);
+		lost.setLocationRelativeTo(null);
+		lost.getContentPane().setBackground(new Color(184, 0, 20));
+
+	    JTextField message = new JTextField();
+        message.setText("YOU WERE LAST!\nYOU LOSE!!");
+        message.setEditable(false);
+        message.setForeground(Color.white);
+        message.setBackground(new Color(184, 0, 20));
+        message.setHorizontalAlignment(JTextField.CENTER);
+
+        lost.add(message);
+	}
+	//Win window pop up
+	private void initWinWindow(){
+		win = new JFrame();
+	    win.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	    win.setSize(355,200);
+	    win.setResizable(false);
+	    win.setLocationRelativeTo(null);
+	    win.getContentPane().setBackground(new Color(53, 101, 77));
+
+	    JTextField message = new JTextField();
+        message.setText("YOU WIN!!!");
+        message.setEditable(false);
+        message.setForeground(Color.white);
+        message.setBackground(new Color(53, 101, 77));
+        message.setHorizontalAlignment(JTextField.CENTER);
+
+        win.add(message);
 	}
 
 //About Window
@@ -1114,7 +1155,7 @@ public class GUI implements Runnable {
         enter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               // This print will be the enter signal from client to server
-              //TODO ADD A LISTENER FUNCTION CALL HERE
+              listener.pressedEnter();
             	System.out.println(listener.getPlayerName() + " has pressed Enter!!!");
               enter.setBackground(new Color(200, 168, 1));
               enter.setEnabled(false);
@@ -1199,5 +1240,9 @@ public class GUI implements Runnable {
 
 	public void updateUserId(String id) {
 		pId.setText("Player ID: " + id);
+	}
+
+	public void showPopup(String wl) {
+		(wl.equals("WI")? win : lost).setVisible(true);
 	}
 }

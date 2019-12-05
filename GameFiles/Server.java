@@ -18,6 +18,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	private HashMap<User, String> passedCards;
 	private int tracker;
 	private int endgame = 0;
+	private int turn;
 
 	/*
 	 * Constructs a server by binding a DatagramSocket to a specified
@@ -31,6 +32,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 		this.hands = new HashMap<User, String>();
 		this.log = new HashMap<User, String>();
 		this.passedCards = new HashMap<User, String>();
+		this.turn = 1;
 		new Thread(this).start();
 	}
 
@@ -85,8 +87,9 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	 * Prints information of all the players and their current cards.
 	 */
 	public void printPlayerStatuses(){
+		System.out.println("Turn: " + this.turn);
 		for(Map.Entry<User, String> p : this.hands.entrySet()){
-			System.out.println("Player ID: " + p.getKey().getUserID() + " Hand: " + p.getValue());
+			System.out.println("Player ID: " + p.getKey().getUserID() + "Name: " + p.getKey().getName() + " Hand: " + p.getValue());
 		}
 	}
 
@@ -289,6 +292,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			this.distributeUIDs();
 			this.distributeCards();
 			this.initPassedCards();
+			this.printPlayerStatuses();
 
 			boolean foundFOAK = false;
 
@@ -296,7 +300,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 				this.tracker = 0;
 
 				while(this.tracker < this.maxPlayers){
-					System.out.println(this.tracker);
+
 				}
 
 				if(this.gameState == ERROR) break;
@@ -304,7 +308,9 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 				this.printPlayerPasses();
 				this.exchangeCards();
 				this.sendCards();
+				this.printPlayerStatuses();
 				foundFOAK = this.foundFourOfAKind();
+				this.turn++;
 			}
 
 			if(this.gameState == ERROR){

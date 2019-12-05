@@ -30,6 +30,10 @@ public class User{
   public int getUserID(){
     return this.userid;
   }
+
+  public String getUsername(){
+    return this.nickname;
+  }
   public InetAddress getAddress(){
     return this.ipAddress;
   }

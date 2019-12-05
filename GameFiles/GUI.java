@@ -51,11 +51,11 @@ public class GUI implements Runnable {
 		initAboutWindow();
 		initLoginWindow();
 	}
-	
+
 	//Lose window pop up
 	private void initLoseWindow(){
 		lost = new JFrame();
-		lost.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		//lost.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		lost.setSize(355,200);
 		lost.setResizable(false);
 		lost.setLocationRelativeTo(null);
@@ -73,7 +73,7 @@ public class GUI implements Runnable {
 	//Win window pop up
 	private void initWinWindow(){
 		win = new JFrame();
-	    win.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+	    //win.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 	    win.setSize(355,200);
 	    win.setResizable(false);
 	    win.setLocationRelativeTo(null);

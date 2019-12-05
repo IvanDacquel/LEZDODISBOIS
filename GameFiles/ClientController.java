@@ -129,6 +129,7 @@ public class ClientController implements ViewListener, HandlerListener {
 	public void pressEnter() {
 		//	Tells the UI to activate the ENTER button
 		mainWindow.pressEnter();
+		sendMessage("EN");
 	}
 
 	//	Called when the player has pressed the EXIT button

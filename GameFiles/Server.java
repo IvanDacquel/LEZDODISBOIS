@@ -89,7 +89,7 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 	public void printPlayerStatuses(){
 		System.out.println("Turn: " + this.turn);
 		for(Map.Entry<User, String> p : this.hands.entrySet()){
-			System.out.println("Player ID: " + p.getKey().getUserID() + "Name: " + p.getKey().getName() + " Hand: " + p.getValue());
+			System.out.println("Player ID: " + p.getKey().getUserID() + " Name: " + p.getKey().getUsername() + " Hand: " + p.getValue());
 		}
 	}
 
@@ -299,7 +299,10 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 			while(!foundFOAK && this.gameState != ERROR){
 				this.tracker = 0;
 
+//NEED TO FIX THIS!!
 				while(this.tracker < this.maxPlayers){
+
+					System.out.println(this.tracker);
 
 				}
 

@@ -773,7 +773,7 @@ public class GUI implements Runnable {
 
 //Main Window
 	private void initLoginWindow() {
-		login = new JFrame("1-2-3PASS! - CMSC 137 Project");
+		login = new JFrame("1-2-3 PASS! - CMSC 137 Project");
         login.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         login.setSize(711,400);
         login.setResizable(false);

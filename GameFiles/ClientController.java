@@ -39,10 +39,10 @@ public class ClientController implements ViewListener, HandlerListener {
 	
 	//	Sets the current values of the cards at hand
 	public void setCards(String card1, String card2, String card3, String card4) {
-		System.out.println(card1);
-		System.out.println(card2);
-		System.out.println(card3);
-		System.out.println(card4);
+		//System.out.println(card1);
+		//System.out.println(card2);
+		//System.out.println(card3);
+		//System.out.println(card4);
 		cards.set(0, card1);
 		cards.set(1, card2);
 		cards.set(2, card3);

@@ -942,14 +942,15 @@ public class GUI implements Runnable {
 
 //Game Window
 	private void initGameWindow() {
-		frame = new JFrame("1-2-3PASS! - CMSC 137 Project");
+		frame = new JFrame("1-2-3 PASS! - CMSC 137 Project");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Removes title bar; so the close (x) button is not seen
         Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(711,400);
         frame.setResizable(false);
         frame.setUndecorated(true);
-        frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+        //frame.setLocation(dim.width/2-frame.getSize().width/2, dim.height/2-frame.getSize().height/2);
+        frame.setLocationRelativeTo(null);
         // Frame size
         // Panel for cards, Shuffle, and Enter buttons
         panel = new JPanel();
@@ -1152,10 +1153,12 @@ public class GUI implements Runnable {
         enter.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
               // This print will be the enter signal from client to server
-              listener.pressedEnter();
+            	listener.pressedEnter();
             	System.out.println(listener.getPlayerName() + " has pressed Enter!!!");
-              enter.setBackground(new Color(200, 168, 1));
-              enter.setEnabled(false);
+              	enter.setBackground(new Color(200, 168, 1));
+              	enter.setEnabled(false);
+              	shuffle.setEnabled(false);
+              	exit.setEnabled(true);
             }
         });
         // Action Listeners
@@ -1199,8 +1202,8 @@ public class GUI implements Runnable {
 
 	public void setInitialValues(String playerName, String portNumber) {
         name.setText("Name: "+ listener.getPlayerName());
-        turn.setText("Turn: 01");
-        score.setText("Score: 00");
+        turn.setText("Turn: XX");
+        score.setText("Score: XX");
         portId.setText("Port: " + portNumber);
 	}
 
@@ -1217,6 +1220,7 @@ public class GUI implements Runnable {
       button2.setEnabled(true);
       button3.setEnabled(true);
       button4.setEnabled(true);
+      if (!(card1.equals("BJ")) && !(card2.equals("BJ")) && !(card3.equals("BJ")) && !(card4.equals("BJ"))) shuffle.setEnabled(true);
       frame.repaint();
 	}
 

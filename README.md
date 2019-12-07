@@ -54,7 +54,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 #### Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/wireframe.png "Game interface")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/login.png "Game interface")<br />
 
 ## Designations
   

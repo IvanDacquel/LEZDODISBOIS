@@ -1155,7 +1155,8 @@ public class GUI implements Runnable {
               // This print will be the enter signal from client to server
             	listener.pressedEnter();
             	System.out.println(listener.getPlayerName() + " has pressed Enter!!!");
-              	enter.setBackground(new Color(200, 168, 1));
+              	//enter.setBackground(new Color(200, 168, 1));
+              	enter.setBackground(new Color(184, 0, 20));
               	enter.setEnabled(false);
               	shuffle.setEnabled(false);
               	exit.setEnabled(true);

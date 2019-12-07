@@ -387,6 +387,12 @@ public class Server extends UDPComponent implements Runnable, GameConstants{
 				this.refresh();
 			}else{
 			//Else, endgame is reached.
+				System.out.println("\nTotal Turns: " + (this.turn-1));
+				System.out.println("\nPlayer Hands on Winning: ");
+				for(Map.Entry<User, String> p : this.hands.entrySet()){
+					System.out.println("\tPlayer ID: " + p.getKey().getUserID() + " Name: " + p.getKey().getUsername() + " Hand: " + p.getValue());
+				}
+
 				this.broadcast("WN");
 				this.tracker = 0;
 

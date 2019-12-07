@@ -42,7 +42,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 ### II. Communication Protocol
 
 1. Data Flow Diagram <br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/diagram2.png "Data Flow Diagram")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/datadiagramflow.png "Data Flow Diagram")<br />
 2. Structure of the Data <br />
 --PENDING--
 
@@ -50,7 +50,7 @@ Github: https://github.com/IvanDacquel/LEZDODISBOIS
 #### Sample of Login UI (Optional)<br />
 +When the code is executed, a GUI will pop-up, asking for the user's Name, Sever ID, and Port<br />
 +After filling up needed information, the UI will change into the game area<br />
-![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/login.png "Client log-in")<br />
+![alt text](https://github.com/IvanDacquel/LEZDODISBOIS/blob/master/gameplay.png "Client log-in")<br />
 #### Sample of Player's UI<br />
 \*Optional<br />
 \*\*Should be included<br />
